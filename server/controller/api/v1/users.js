@@ -38,7 +38,7 @@ module.exports.create = function (req, res) {
 
 //login api
 module.exports.login = function (req, res) {
-  console.log(req.body.email);
+  console.log(req.body.data);
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) {
       return res.status(400).json({
@@ -62,6 +62,7 @@ module.exports.login = function (req, res) {
 
 //update user details api
 module.exports.update = function (req, res) {
+  console.log(req);
   let body = req.body;
   if (!body) {
     return res.status(400).json({
@@ -69,33 +70,36 @@ module.exports.update = function (req, res) {
       message: "You must provide a body for update",
     });
   }
-  console.log(req);
-  User.findOne({ _id: req.params.id }, function (err, user) {
-    if (err) {
-      return res.status(404).json({
-        success: false,
-        message: "user not found",
-      });
-    }
+  // console.log(req);
+  // User.findOne({ _id: req.params.id }, function (err, user) {
 
-    user.name = body.name;
-    user.email = body.email;
-    user.password = body.password;
+  //   if (err) {
+  //     return res.status(404).json({
+  //       success: false,
+  //       message: "user not found",
+  //     });
+  //   }
+  //   console.log(`User Email id : ${user}`);
+  //   if (user.email === body.email ) {
+  //     user.name = body.name;
+  //     user.email = body.email;
+  //     user.password = body.password;
+  //   }
 
-    user
-      .save()
-      .then(() => {
-        return res.status(200).json({
-          success: true,
-          message: "user details is updated",
-        });
-      })
-      .catch((err) => {
-        return res.status(404).json({
-          err,
-          success: false,
-          message: "user details not update",
-        });
-      });
-  });
+  //   user
+  //     .save()
+  //     .then(() => {
+  //       return res.status(200).json({
+  //         success: true,
+  //         message: "user details is updated",
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       return res.status(404).json({
+  //         err,
+  //         success: false,
+  //         message: "user details not update",
+  //       });
+  //     });
+  // });
 };
