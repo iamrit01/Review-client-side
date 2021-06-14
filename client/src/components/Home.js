@@ -7,9 +7,6 @@ class Home extends Component {
         <h1>Home Page</h1>
         <ul>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
             <Link to="/api/v1/users/login">Login </Link>
           </li>
           <li>

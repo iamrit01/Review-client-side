@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/api/v1/users/login" component={Login} />
