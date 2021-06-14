@@ -5,14 +5,6 @@ class Home extends Component {
     return (
       <div>
         <h1>Home Page</h1>
-        <ul>
-          <li>
-            <Link to="/api/v1/users/login">Login </Link>
-          </li>
-          <li>
-            <Link to="/api/v1/users/create">SignUp </Link>
-          </li>
-        </ul>
       </div>
     );
   }
