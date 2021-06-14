@@ -7,10 +7,12 @@ class Navbar extends Component {
       <div className="navbar">
         <div className="logo-container">
           <div className="logo-img">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yPH54tvGXpnR-YG4lLq6JJVQwnzQRBqO8Q&usqp=CAU"
-              alt="logo"
-            />
+            <Link to="/">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yPH54tvGXpnR-YG4lLq6JJVQwnzQRBqO8Q&usqp=CAU"
+                alt="logo"
+              />
+            </Link>
           </div>
           <div className="search-container">
             <FiSearch />
@@ -19,9 +21,6 @@ class Navbar extends Component {
         </div>
         <div className="nav-links">
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
             <li>
               <Link to="/api/v1/users/login">Login</Link>
             </li>
