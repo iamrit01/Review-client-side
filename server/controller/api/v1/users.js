@@ -2,7 +2,7 @@ const User = require("../../../models/users");
 
 //sigup api
 module.exports.create = function (req, res) {
-  // console.log(req.params);
+  console.log(req.body.data);
 
   let body = req.body;
   if (!body) {
@@ -11,14 +11,15 @@ module.exports.create = function (req, res) {
       error: "you must provide a user",
     });
   }
-  let user = User(body);
-  // console.log(req.body);
+  let user = User(body.data);
+
   if (!user) {
     return res.status(400).json({
       success: false,
       error: err,
     });
   }
+
   user
     .save()
     .then(() => {
@@ -38,8 +39,8 @@ module.exports.create = function (req, res) {
 
 //login api
 module.exports.login = function (req, res) {
-  console.log(req.body.data);
-  User.findOne({ email: req.body.email }, function (err, user) {
+  console.log(req.body.data.email);
+  User.findOne({ email: req.body.data.email }, function (err, user) {
     if (err) {
       return res.status(400).json({
         err,
@@ -53,10 +54,12 @@ module.exports.login = function (req, res) {
         message: "user is not avable in db",
       });
     }
-    return res.status(200).json({
-      success: true,
-      message: "user found in the data base",
-    });
+    console.log(user);
+    return res.redirect("back");
+    // return res.status(200).json({
+    //   success: true,
+    //   message: "user found in the data base",
+    // });
   });
 };
 

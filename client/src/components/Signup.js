@@ -1,43 +1,80 @@
-import React, { Component } from "react";
-import api from "../api";
-class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      password: "",
-      confirmPassword: "",
-    };
-  }
-  signUPData() {
-    const { name, password, confirmPassword } = this.state;
-    const payload = { name, password, confirmPassword };
+import React, { useState } from "react";
+import axios from "axios";
 
-    api.signup(payload).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(`error from signup api ${error}`);
-      }
-    );
-  }
-  render() {
-    return (
+const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const signUPData = async (event) => {
+    event.preventDefault();
+
+    let user = { name, email, password, confirmPassword };
+    // console.log("signup user", user);
+
+    await axios.post("http://localhost:8000/api/v1/users/create", {
+      data: user,
+    });
+  };
+  return (
+    <div>
+      <h1> Sign Up Page</h1>
       <div>
-        <h1> Sign Up Page</h1>
-        <form action="/api/v1/users/create" method="POST">
-          <p>Email</p>
-          <input type="email" placeholder="enter email"></input>
-          <p>password</p>
-          <input type="password" placeholder="enter password"></input>
-          <p>confirm password</p>
-          <input type="password" placeholder="enter confirm password"></input>
-          <button onClick={this.signUPData}>Sign UP</button>
-        </form>
+        <label>
+          Name
+          <input
+            name="password"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+        </label>
       </div>
-    );
-  }
-}
+      <div>
+        <label>
+          Email
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Confirm Password
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
+        </label>
+      </div>
+      <input
+        type="submit"
+        value="signup"
+        onClick={(event) => signUPData(event)}
+      />
+    </div>
+  );
+};
 
 export default Signup;
