@@ -3,10 +3,11 @@ const cors = require("cors");
 const app = express();
 const port = 8000;
 const db = require("./config/mongoose");
-const routes = require("./router/index");
+const header = require("./middlewares/header");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(header);
 app.use(cors());
 
 app.use("/", require("./router/index"));
