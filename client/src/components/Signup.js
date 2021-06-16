@@ -13,6 +13,7 @@ const Signup = () => {
     console.log(user);
     await axios.post("/api/v1/users/create", user).then((response) => {
       console.log(response);
+      this.props.history.push("/");
     });
   };
   return (
@@ -58,72 +59,6 @@ const Signup = () => {
         <button onClick={signUPData}>Sign Up</button>
       </div>
     </form>
-    // <div className="Signup">
-    //   <div className="signup-container">
-    //     <h1> Sign Up Page</h1>
-    //     <div className="input-container">
-    //       <div className="name ">
-    //         <p>Name</p>
-    //       </div>
-    //       <div className="name-input">
-    //         <input
-    //           name="password"
-    //           type="text"
-    //           placeholder="Name"
-    //           value={name}
-    //           onChange={(event) => setName(event.target.value)}
-    //         />
-    //       </div>
-    //     </div>
-    //     <div className="input-container">
-    //       <div className="email ">
-    //         <p>Email</p>
-    //       </div>
-    //       <div className="email-input">
-    //         <input
-    //           name="email"
-    //           type="email"
-    //           placeholder="Email"
-    //           value={email}
-    //           onChange={(event) => setEmail(event.target.value)}
-    //         />
-    //       </div>
-    //     </div>
-    //     <div className="input-container">
-    //       <div className="password">
-    //         <p> Password</p>
-    //       </div>
-    //       <div className="password-input">
-    //         <input
-    //           name="password"
-    //           type="password"
-    //           placeholder="Password"
-    //           value={password}
-    //           onChange={(event) => setPassword(event.target.value)}
-    //         />
-    //       </div>
-    //     </div>
-    //     <div className="input-container">
-    //       <div className="conf_password">
-    //         <p>Confirm Password</p>
-    //       </div>
-    //       <div className="conf_password-container">
-    //         <input
-    //           name="password"
-    //           type="password"
-    //           placeholder="Password"
-    //           value={confirmPassword}
-    //           onChange={(event) => setConfirmPassword(event.target.value)}
-    //         />
-    //       </div>
-    //     </div>
-    //     <input
-    //       type="submit"
-    //       value="signup"
-    //       onClick={(event) => signUPData(event)}
-    //     />
-    //   </div>
-    // </div>
   );
 };
 

@@ -49,6 +49,7 @@ module.exports.login = function (req, res) {
         });
       }
       fetchedUser = user;
+      console.log(`password ::: ${req.body.password} and user.password ::: ${user.password}`);
       return bcrypt.compare(req.body.password, user.password);
     })
     .then((result) => {
@@ -77,7 +78,6 @@ module.exports.login = function (req, res) {
       });
     });
 };
-
 
 //update user details api
 module.exports.update = function (req, res) {
