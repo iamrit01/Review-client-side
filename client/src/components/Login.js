@@ -17,14 +17,20 @@ class Login extends Component {
   }
 
   onSubmit = async (event) => {
+    const auth = this.context;
     event.preventDefault();
     // console.log("this.state.user => ", this.state.user);
     await axios
       .post("/api/v1/users/login", this.state.user)
       .then((response) => {
-        // console.log(`login user response `, response.data.token);
+        console.log(`login user response `, response.data);
         localStorage.setItem("token", response.data.token);
-        // this.props.history.push("/");
+        this.props.history.push("/api/v1/profile/viewProfile");
+        // auth.login(response.data.userId, response.data.token);
+        // return axios.get("/api/v1/profile/viewProfile");
+      })
+      .then((data) => {
+        console.log("profile data ", data);
       })
 
       .catch((e) => {

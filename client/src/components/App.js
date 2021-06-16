@@ -1,7 +1,6 @@
-import { Navbar, Login, Signup, Home, NotFound } from "./Index";
+import { Navbar, Login, Signup, Home, NotFound, Profile } from "./Index";
 import { Route, Switch } from "react-router-dom";
 import { Component } from "react";
-import jwt from "jsonwebtoken";
 class App extends Component {
   // componentDidMount() {
   //   const token = localStorage.getItem("token");
@@ -22,6 +21,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/api/v1/users/login" component={Login} />
           <Route path="/api/v1/users/create" component={Signup} />
+          <Route path="/api/v1/profile/viewProfile" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </div>
