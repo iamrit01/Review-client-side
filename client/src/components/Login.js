@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "../css/Login.css";
 class Login extends Component {
@@ -7,17 +6,6 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        email: "",
-        password: "",
-      },
-      error: {
-        message: "",
-        code: "",
-      },
-      isloading: false,
-      isLoginMode: true,
-
-      errors: {
         email: "",
         password: "",
       },
