@@ -9,20 +9,32 @@ class Login extends Component {
         email: "",
         password: "",
       },
+      error: {
+        message: "",
+        code: "",
+      },
     };
   }
 
   onSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.user);
+    // console.log("this.state.user => ", this.state.user);
     await axios
       .post("/api/v1/users/login", this.state.user)
       .then((response) => {
-        console.log(response.data);
-        this.props.history.push("/");
+        // console.log(`login user response `, response.data.token);
+        localStorage.setItem("token", response.data.token);
+        // this.props.history.push("/");
       })
+
       .catch((e) => {
-        console.log(e);
+        this.setState({
+          error: {
+            ...this.state.error,
+            message: e.response.data.message,
+            code: e.response.satus,
+          },
+        });
       });
   };
   onEmailChange = (e) => {
