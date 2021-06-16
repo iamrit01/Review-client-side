@@ -1,3 +1,3 @@
 module.exports.viewProfile = function (req, res) {
-  return res.send("Hello World!");
+  return res.send("Profile");
 };

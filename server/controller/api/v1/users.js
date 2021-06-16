@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 module.exports.create = function (req, res) {
   // console.log(req.body.data);
   bcrypt.hash(req.body.password, 10).then((hash) => {
+    console.log(hash);
     const user = new User({
       name: req.body.name,
       email: req.body.email,
@@ -49,7 +50,6 @@ module.exports.login = function (req, res) {
         });
       }
       fetchedUser = user;
-      console.log(`password ::: ${req.body.password} and user.password ::: ${user.password}`);
       return bcrypt.compare(req.body.password, user.password);
     })
     .then((result) => {
@@ -63,7 +63,7 @@ module.exports.login = function (req, res) {
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
         "!)(@{?:Dwrwa4v64576iugsfdxchqtewyb6p['';eueu6wTDq`394g./phrasdfwyafsdh",
-        { expiresIn: "1h" }
+        { expiresIn: "100000" }
       );
       res.status(200).json({
         token: token,
