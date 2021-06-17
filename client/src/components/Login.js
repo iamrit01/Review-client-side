@@ -23,24 +23,37 @@ class Login extends Component {
     await axios
       .post("/api/v1/users/login", this.state.user)
       .then((response) => {
-        console.log(`login user response `, response.data);
+        console.log(`login user response `, response);
         localStorage.setItem("token", response.data.token);
-        this.props.history.push("/api/v1/profile/viewProfile");
+        // this.props.history.push("/");
+        const authAxios = axios.create({
+          baseURL: "http://localhost:3001",
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+          },
+        });
+        const userData = authAxios
+          .post("/api/v1/profile/viewProfile")
+          .then((userdata) => {
+            console.log("```` ", userdata.data.userData);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+
         // auth.login(response.data.userId, response.data.token);
         // return axios.get("/api/v1/profile/viewProfile");
       })
-      .then((data) => {
-        console.log("profile data ", data);
-      })
 
       .catch((e) => {
-        this.setState({
-          error: {
-            ...this.state.error,
-            message: e.response.data.message,
-            code: e.response.satus,
-          },
-        });
+        console.log(e);
+        // this.setState({
+        //   error: {
+        //     ...this.state.error,
+        //     message: e.response.data.message,
+        //     code: e.response.satus,
+        //   },
+        // });
       });
   };
   onEmailChange = (e) => {
