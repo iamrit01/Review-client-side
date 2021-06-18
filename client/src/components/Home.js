@@ -92,6 +92,134 @@ class Home extends Component {
               </div> */}
             </div>
           </div>
+          <div className="post_lists">
+            <div className="post_item">
+              <div className="item_header">
+                <div className="item_user">
+                  <div className="user_img">
+                    <img
+                      id="user_dp"
+                      src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                      alt="user_dp"
+                    />
+                  </div>
+                  <div className="user_name">
+                    <h4>John Doe</h4>
+                  </div>
+                </div>
+                <div className="item_content">
+                  <div className="item_headline">
+                    <h3>Central Park, New York</h3>
+                  </div>
+                  <div className="item_content_subheadlines">
+                    <p>
+                      Central Park is an urban park in New York City located
+                      between the Upper West and Upper East Sides of Manhattan.
+                      It is the fifth-largest park in the city by area, covering
+                      843 acres (341 ha).
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="item_content_media">
+                <img src="https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNlbnRyYWwlMjBwYXJrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+              </div>
+              <div className="item_btns">
+                <div className="like_btn exprssion_btn">
+                  <button>
+                    <AiOutlineLike size={35} />
+                  </button>
+                  <div className="like_count count">
+                    <span>30</span>
+                  </div>
+                </div>
+                <div className="dislike_btn exprssion_btn">
+                  <button className="like_btn">
+                    <AiOutlineDislike size={35} />
+                  </button>
+                  <div className="like_count count ">
+                    <span>2</span>
+                  </div>
+                </div>
+                <div className="comment_count exprssion_btn">
+                  <button className="comment_btn">
+                    <AiOutlineComment size={35} />
+                  </button>
+                  <div className="comment_count count">
+                    <span>2</span>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="item_comment_section">
+                <input type="text" placeholder="Enter Comments here..." />
+              </div> */}
+            </div>
+          </div>
+          <div className="post_lists">
+            <div className="post_item">
+              <div className="item_header">
+                <div className="item_user">
+                  <div className="user_img">
+                    <img
+                      id="user_dp"
+                      src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                      alt="user_dp"
+                    />
+                  </div>
+                  <div className="user_name">
+                    <h4>John Doe</h4>
+                  </div>
+                </div>
+                <div className="item_content">
+                  <div className="item_headline">
+                    <h3>Angkor Wat, Cambodia</h3>
+                  </div>
+                  <div className="item_content_subheadlines">
+                    <p>
+                      Angkor Wat is an enormous Buddhist temple complex located
+                      in northern Cambodia. ... Its name, which translates to
+                      “temple city” in the Khmer language of the region,
+                      references the fact it was built by Emperor Suryavarman
+                      II, who ruled the region from 1113 to 1150, as the state
+                      temple and political center of his empire
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="item_content_media">
+                <img src="https://images.unsplash.com/photo-1569668723493-80d82b05bad7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YW5na29yJTIwd2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+              </div>
+              <div className="item_btns">
+                <div className="like_btn exprssion_btn">
+                  <button>
+                    <AiOutlineLike size={35} />
+                  </button>
+                  <div className="like_count count">
+                    <span>30</span>
+                  </div>
+                </div>
+                <div className="dislike_btn exprssion_btn">
+                  <button className="like_btn">
+                    <AiOutlineDislike size={35} />
+                  </button>
+                  <div className="like_count count ">
+                    <span>2</span>
+                  </div>
+                </div>
+                <div className="comment_count exprssion_btn">
+                  <button className="comment_btn">
+                    <AiOutlineComment size={35} />
+                  </button>
+                  <div className="comment_count count">
+                    <span>2</span>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="item_comment_section">
+                <input type="text" placeholder="Enter Comments here..." />
+              </div> */}
+            </div>
+          </div>
         </div>
         <div className="right_group_contaier"></div>
       </div>
