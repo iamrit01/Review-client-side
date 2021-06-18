@@ -1,17 +1,64 @@
 .home {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+}
+.timeline_navbar {
+  width: 243px;
+  height: -moz-fit-content;
+  height: fit-content;
+  /* background-color: gray; */
+  position: fixed;
 }
 .profile_nav_container {
-  width: 25%;
+  width: 70%;
   height: 50vh;
-  border: 2px solid gainsboro;
+  /* border: 2px solid gainsboro; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* left: 25px; */
+  /* position: relative; */
+  /* left: 194px; */
+  align-items: flex-start;
+  margin-left: 20%;
+}
+
+.nav_link {
+  font-size: larger;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.nav_link:hover {
+  cursor: pointer;
+  background-color: #f6c231;
+  color: white;
+  border-radius: 10px;
+}
+
+.nav_item {
+  display: flex;
+  flex-direction: row;
+}
+.nav_item_icon {
+  padding-top: 6px;
+}
+.nav_item_title {
+  font-size: larger;
+  padding-left: 10px;
 }
 .home .heading {
   /* border-bottom: 1px solid gainsboro; */
 }
+.user_timeline {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* middle Container */
 .middle_container {
-  width: 40%;
+  width: 55%;
   height: max-content;
   border: 2px solid gainsboro;
   padding: 10px;
@@ -49,12 +96,6 @@
 }
 .content_post_btn :hover {
   cursor: pointer;
-}
-
-.right_group_contaier {
-  width: 25%;
-  height: 50vh;
-  border: 2px solid gainsboro;
 }
 
 .post_item {
@@ -122,5 +163,9 @@
   margin: 0;
 }
 
-.item_comment_section {
+.right_group_contaier {
+  width: 25%;
+  height: 50vh;
+  border: 2px solid gainsboro;
+  background-color: blanchedalmond;
 }
