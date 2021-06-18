@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AiOutlineHome, AiOutlineMessage } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { GrGroup } from "react-icons/gr";
 import "../css/Home.css";
 
 import {
@@ -262,7 +263,44 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          <div className="right_group_contaier">asdfsdf</div>
+          <div className="right_group_container">
+            <div className="group_container_lists ">
+              <h3>Groups</h3>
+
+              <div className="group_container_list_items nav_link">
+                <div className="group_container_list_item_icon nav_item_icon">
+                  <GrGroup size={20} />
+                </div>
+                <div className="group_container_list_item_heading nav_item_title">
+                  International
+                </div>
+              </div>
+              <div className="group_container_list_items nav_link">
+                <div className="group_container_list_item_icon nav_item_icon">
+                  <GrGroup size={20} />
+                </div>
+                <div className="group_container_list_item_heading nav_item_title">
+                  National
+                </div>
+              </div>
+              <div className="group_container_list_items nav_link">
+                <div className="group_container_list_item_icon nav_item_icon">
+                  <GrGroup size={20} />
+                </div>
+                <div className="group_container_list_item_heading nav_item_title">
+                  Classmates
+                </div>
+              </div>
+              <div className="group_container_list_items nav_link">
+                <div className="group_container_list_item_icon nav_item_icon">
+                  <GrGroup size={20} />
+                </div>
+                <div className="group_container_list_item_heading nav_item_title">
+                  Friends Group
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

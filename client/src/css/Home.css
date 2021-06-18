@@ -4,13 +4,13 @@
 }
 .timeline_navbar {
   width: 243px;
-  height: -moz-fit-content;
+  /* height: -moz-fit-content; */
   height: fit-content;
   /* background-color: gray; */
   position: fixed;
 }
 .profile_nav_container {
-  width: 70%;
+  /* width: 70%; */
   height: 50vh;
   /* border: 2px solid gainsboro; */
   display: flex;
@@ -25,9 +25,7 @@
 
 .nav_link {
   font-size: larger;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
   padding: 10px;
 }
 .nav_link:hover {
@@ -163,9 +161,40 @@
   margin: 0;
 }
 
-.right_group_contaier {
+.right_group_container {
   width: 25%;
   height: 50vh;
-  border: 2px solid gainsboro;
-  background-color: blanchedalmond;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: blanchedalmond; */
+}
+.group_container_lists {
+  /* border: 1px solid black; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: flex-start;
+  /* padding-top: 10px; */
+  /* padding-right: 10px; */
+}
+.group_container_lists h3 {
+  margin-left: 30px;
+
+  /* border-bottom: 1px solid gainsboro; */
+}
+.group_container_list_items {
+  /* border: 1px solid black; */
+  display: flex;
+  /* padding-top: 10px; */
+  /* margin-top: 5px; */
+  margin-left: 30px;
+  /* align-items: flex-start; */
+}
+.group_container_list_items:hover {
+  cursor: pointer;
+  background-color: #f6c231;
+  color: white;
+  border-radius: 10px;
 }
