@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 module.exports.viewProfile = function (req, res) {
-  console.log("view Profile", req);
+  // console.log("view Profile", req);
   const token = req.headers.authorization.split(" ")[1];
 
   const decodedToken = jwt.decode(
@@ -23,4 +23,8 @@ module.exports.viewProfile = function (req, res) {
     message: "seccessfully fetch the user details form the token",
     userData: req.userData,
   });
+};
+
+module.exports.personal = function (req, res) {
+  console.log("personal", req);
 };

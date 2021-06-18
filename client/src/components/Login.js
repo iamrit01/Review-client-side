@@ -40,6 +40,7 @@ class Login extends Component {
           .catch((e) => {
             console.log(e);
           });
+        return axios.get("api/v1/profile/personal");
 
         // auth.login(response.data.userId, response.data.token);
         // return axios.get("/api/v1/profile/viewProfile");
