@@ -6,6 +6,7 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
+        // userId: "",
         email: "",
         password: "",
       },
@@ -17,6 +18,8 @@ class Login extends Component {
   }
 
   onSubmit = async (event) => {
+    const { user, handleUserChanges } = this.props;
+    console.log("user____ ", user);
     const auth = this.context;
     event.preventDefault();
     // console.log("this.state.user => ", this.state.user);
@@ -25,7 +28,7 @@ class Login extends Component {
       .then((response) => {
         console.log(`login user response `, response);
         localStorage.setItem("token", response.data.token);
-        // this.props.history.push("/");
+        this.props.history.push("/api/v1/profile/timeline");
         const authAxios = axios.create({
           baseURL: "http://localhost:3001",
           headers: {
@@ -36,11 +39,11 @@ class Login extends Component {
           .post("/api/v1/profile/viewProfile")
           .then((userdata) => {
             console.log("```` ", userdata.data.userData);
+            handleUserChanges(userdata);
           })
           .catch((e) => {
             console.log(e);
           });
-        return axios.get("api/v1/profile/personal");
 
         // auth.login(response.data.userId, response.data.token);
         // return axios.get("/api/v1/profile/viewProfile");

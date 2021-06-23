@@ -4,5 +4,6 @@ import Signup from "./Signup";
 import Home from "./Home";
 import NotFound from "./NotFound";
 import Profile from "./Profile";
+import Timeline from "./Timeline";
 
-export { Navbar, Login, Signup, Home, Profile, NotFound };
+export { Navbar, Login, Signup, Home, Profile, Timeline, NotFound };

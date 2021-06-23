@@ -54,7 +54,7 @@ class Signup extends Component {
       .then((response) => {
         console.log(response);
         // localStorage.item('token', response.to)
-        this.props.history.push("/");
+        this.props.history.push("/api/v1/users/login");
       })
       .catch((e) => {
         console.log(e);
