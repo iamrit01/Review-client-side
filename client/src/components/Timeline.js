@@ -61,9 +61,10 @@ class Timeline extends Component {
               <div className="content_textarea">
                 <textarea
                   rows={3}
-                  cols={98}
-                  placeholder="Enter Reviews here..."
+                  // cols={98}
+                  placeholder="Enter &#10;Reviews &#10;here... "
                 />
+                {/* <input type="text" placeholder="Enter Reviews here..." /> */}
               </div>
               <div className="content_post_btn">
                 <button>Post</button>

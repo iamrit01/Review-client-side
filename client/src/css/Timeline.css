@@ -61,19 +61,29 @@
   border: 2px solid gainsboro;
   padding: 10px;
 }
+
 .post_content_container {
-  position: relative;
-  left: 7px;
-  border: none;
+  width: 100%;
 }
-.post_content_container textarea {
-  border-top: 1px solid gainsboro;
-  border-left: 0;
-  border-right: 0;
-  /* border-color: #f6c231; */
-  outline: none;
-  margin-top: 5px;
+.content_textarea {
+  width: 100%;
+}
+.content_textarea textarea {
+  width: 99%;
+  height: 65px;
+  border: none;
   border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
+  outline: none;
+  padding-left: 10px;
+  margin-top: 5px;
+}
+.content_textarea input {
+  width: 99%;
+  height: 65px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
 }
 .content_post_btn {
   display: flex;
@@ -197,4 +207,9 @@
   background-color: #f6c231;
   color: white;
   border-radius: 10px;
+}
+@media only screen and (max-width: 1200px) {
+  .timeline_navbar {
+    width: 10%;
+  }
 }
