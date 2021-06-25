@@ -13,25 +13,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       user: {
         id: "",
-        // name: "",
+        name: "",
         email: "",
         // password: "",
       },
     };
   }
-  handleUserChanges = (data) => {
-    console.log("app function :: ", data.data.userData);
+  handleUserChanges = (userData) => {
+    console.log("app function :: ", userData);
     this.setState({
-      user: data.data.userData,
+      user: userData,
     });
   };
   render() {
     console.log("app return ", this.state.user);
     return (
       <div className="App">
-        <Navbar email={this.state.user.email} />
+        <Navbar name={this.state.user.name} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

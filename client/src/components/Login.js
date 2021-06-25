@@ -6,58 +6,52 @@ class Login extends Component {
     super(props);
     this.state = {
       user: {
-        // userId: "",
+        userId: "",
         email: "",
         password: "",
       },
-      error: {
-        message: "",
-        code: "",
-      },
+      // error: {
+      //   message: "",
+      //   code: "",
+      // },
     };
   }
+  handleNameChange = (user_data) => {
+    const { user } = this.props;
+    user = user_data;
+    console.log("handle user :: ", user);
+  };
 
-  onSubmit = async (event) => {
-    const { user, handleUserChanges } = this.props;
-    console.log("user____ ", user);
-    const auth = this.context;
+  onSubmit = (event) => {
+    console.log("login this.state.user", this.state.user);
     event.preventDefault();
-    // console.log("this.state.user => ", this.state.user);
-    await axios
+    axios
       .post("/api/v1/users/login", this.state.user)
       .then((response) => {
-        console.log(`login user response `, response);
+        console.log("on submit response ", response);
         localStorage.setItem("token", response.data.token);
         this.props.history.push("/api/v1/profile/timeline");
         const authAxios = axios.create({
           baseURL: "http://localhost:3001",
           headers: {
-            Authorization: `Bearer ${response.data.token}`,
+            Authorization: `Bearer ${response.data.data.token}`,
           },
         });
-        const userData = authAxios
-          .post("/api/v1/profile/viewProfile")
+        authAxios
+          .post("/api/v1/profile/timeline")
           .then((userdata) => {
-            console.log("```` ", userdata.data.userData);
-            handleUserChanges(userdata);
+            // this.setState({
+            //   name: userdata.data.data.name,
+            // });
+            console.log("api timeline user data :: ", userdata.data);
+            this.props.handleUserChanges(userdata.data);
           })
           .catch((e) => {
             console.log(e);
           });
-
-        // auth.login(response.data.userId, response.data.token);
-        // return axios.get("/api/v1/profile/viewProfile");
       })
-
       .catch((e) => {
         console.log(e);
-        // this.setState({
-        //   error: {
-        //     ...this.state.error,
-        //     message: e.response.data.message,
-        //     code: e.response.satus,
-        //   },
-        // });
       });
   };
   onEmailChange = (e) => {
@@ -76,6 +70,7 @@ class Login extends Component {
       },
     });
   };
+
   render() {
     return (
       <form className="login-form">

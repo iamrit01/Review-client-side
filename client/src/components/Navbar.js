@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import "../css/Navbar.css";
 class Navbar extends Component {
   render() {
-    const { email } = this.props;
+    const { name } = this.props;
     return (
       <div className="navbar">
         <div className="logo-container">
@@ -29,7 +29,7 @@ class Navbar extends Component {
               alt="user-dp"
               id="user-dp"
             />
-            <span>{email}</span>
+            <span>{name}</span>
           </div>
           <div className="nav-links">
             <ul>
