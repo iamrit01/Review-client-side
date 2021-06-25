@@ -48,11 +48,11 @@ class Signup extends Component {
 
   signUPData = async (event) => {
     event.preventDefault();
-    console.log(this.state.user);
+    console.log("this.state.user ", this.state.user);
     await axios
-      .post("/api/v1/users/create", this.state.user)
+      .post("/api/v1/users/signup", this.state.user)
       .then((response) => {
-        console.log(response);
+        console.log("response ", response);
         // localStorage.item('token', response.to)
         this.props.history.push("/api/v1/users/login");
       })

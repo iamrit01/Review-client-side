@@ -5,8 +5,9 @@ const dotenv = require("dotenv").config();
 
 //sigup api
 module.exports.sigup = async function (req, res) {
+  console.log("request from signup page :: ", req);
   try {
-    if (req.body.password != req.body.confirm_password) {
+    if (req.body.password != req.body.confirmPassword) {
       return res.json(401, {
         message: "password is not match",
       });
