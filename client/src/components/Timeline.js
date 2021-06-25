@@ -11,6 +11,30 @@ import {
   AiOutlineComment,
 } from "react-icons/ai";
 class Timeline extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      post: {
+        id: "",
+        description: "",
+      },
+    };
+  }
+  handleDescriptionChanges = (e) => {
+    console.log("e.targe.value ", e.target.value);
+    this.setState({
+      post: {
+        ...this.state.post,
+        description: e.target.value,
+      },
+    });
+  };
+  handlePostSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("hey submit button");
+    console.log("this.state.post ", this.state.post);
+  };
   render() {
     return (
       <div className="timeline">
@@ -59,15 +83,24 @@ class Timeline extends Component {
 
             <form className="post_content_container">
               <div className="content_textarea">
-                <textarea
+                {/* <textarea
+                  name="description"
+                  value={this.state.post.description}
                   rows={3}
-                  // cols={98}
+                  required
                   placeholder="Enter &#10;Reviews &#10;here... "
+                  onChange={this.handleDescriptionChanges}
+                /> */}
+                <input
+                  type="text"
+                  name="description"
+                  onChange={this.handleDescriptionChanges}
+                  placeholder="Enter Reviews here..."
+                  required
                 />
-                {/* <input type="text" placeholder="Enter Reviews here..." /> */}
               </div>
               <div className="content_post_btn">
-                <button>Post</button>
+                <button onClick={this.handlePostSubmit}>Post</button>
               </div>
             </form>
 
