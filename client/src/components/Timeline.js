@@ -4,6 +4,7 @@ import { AiOutlineHome, AiOutlineMessage } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { GrGroup } from "react-icons/gr";
+import axios from "axios";
 
 import {
   AiOutlineLike,
@@ -22,18 +23,31 @@ class Timeline extends Component {
   }
   handleDescriptionChanges = (e) => {
     console.log("e.targe.value ", e.target.value);
+    const { user_id } = this.props;
     this.setState({
       post: {
         ...this.state.post,
+        id: user_id,
         description: e.target.value,
       },
     });
   };
   handlePostSubmit = (e) => {
     e.preventDefault();
-
+    axios.post("/api/v1/post/create", this.state.post).then((response) => {
+      console.log("create post response from axios ", response);
+    });
+    // const { user_id } = this.props;
+    // this.setState({
+    //   post: {
+    //     ...this.state.post,
+    //     id: user_id,
+    //   },
+    // });
+    // axios.post("/api/v1/post/create");
     console.log("hey submit button");
     console.log("this.state.post ", this.state.post);
+    // console.log("login user ", id);
   };
   render() {
     return (

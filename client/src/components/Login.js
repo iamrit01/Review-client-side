@@ -44,6 +44,7 @@ class Login extends Component {
             //   name: userdata.data.data.name,
             // });
             console.log("api timeline user data :: ", userdata.data);
+            
             this.props.handleUserChanges(userdata.data);
           })
           .catch((e) => {

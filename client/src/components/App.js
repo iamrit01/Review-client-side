@@ -47,7 +47,10 @@ class App extends Component {
           />
           <Route path="/api/v1/users/create" component={Signup} />
           <Route path="/api/v1/profile/viewProfile" component={Profile} />
-          <Route path="/api/v1/profile/timeline" component={Timeline} />
+          <Route
+            path="/api/v1/profile/timeline"
+            render={(props) => <Timeline user_id={this.state.user.id} />}
+          />
           <Route component={NotFound} />
         </Switch>
       </div>
