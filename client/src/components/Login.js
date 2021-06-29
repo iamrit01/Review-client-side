@@ -10,10 +10,6 @@ class Login extends Component {
         email: "",
         password: "",
       },
-      // error: {
-      //   message: "",
-      //   code: "",
-      // },
     };
   }
   handleNameChange = (user_data) => {
@@ -44,7 +40,7 @@ class Login extends Component {
             //   name: userdata.data.data.name,
             // });
             console.log("api timeline user data :: ", userdata.data);
-            
+
             this.props.handleUserChanges(userdata.data);
           })
           .catch((e) => {

@@ -21,6 +21,28 @@ class Timeline extends Component {
       },
     };
   }
+
+  handlePostSubmit = (e) => {
+    e.preventDefault();
+    console.log("on submiting the post, the state look like ", this.state.post);
+    axios.post("/api/v1/post/create", this.state.post).then((response) => {
+      console.log("create post response from axios ", response);
+      return "";
+    }).catch = (err) => {
+      console.log("error from the post axios  ", err);
+    };
+    // const { user_id } = this.props;
+    // this.setState({
+    //   post: {
+    //     ...this.state.post,
+    //     id: user_id,
+    //   },
+    // });
+    // axios.post("/api/v1/post/create");
+    // console.log("hey submit button");
+    // console.log("this.state.post ", this.state.post);
+    // console.log("login user ", id);
+  };
   handleDescriptionChanges = (e) => {
     console.log("e.targe.value ", e.target.value);
     const { user_id } = this.props;
@@ -31,23 +53,6 @@ class Timeline extends Component {
         description: e.target.value,
       },
     });
-  };
-  handlePostSubmit = (e) => {
-    e.preventDefault();
-    axios.post("/api/v1/post/create", this.state.post).then((response) => {
-      console.log("create post response from axios ", response);
-    });
-    // const { user_id } = this.props;
-    // this.setState({
-    //   post: {
-    //     ...this.state.post,
-    //     id: user_id,
-    //   },
-    // });
-    // axios.post("/api/v1/post/create");
-    console.log("hey submit button");
-    console.log("this.state.post ", this.state.post);
-    // console.log("login user ", id);
   };
   render() {
     return (

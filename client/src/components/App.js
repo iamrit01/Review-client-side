@@ -13,7 +13,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       user: {
         id: "",
         name: "",
@@ -49,7 +48,9 @@ class App extends Component {
           <Route path="/api/v1/profile/viewProfile" component={Profile} />
           <Route
             path="/api/v1/profile/timeline"
-            render={(props) => <Timeline user_id={this.state.user.id} />}
+            render={(props) => (
+              <Timeline user_id={this.state.user.id} user={this.state.user} />
+            )}
           />
           <Route component={NotFound} />
         </Switch>

@@ -26,7 +26,7 @@ module.exports.create = async function (req, res) {
         console.log("post details ", post);
         return res.status(200).json({
           message: "post is created",
-          createdPost: post,
+          post: post,
         });
       });
     });
