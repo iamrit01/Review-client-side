@@ -49,6 +49,8 @@ module.exports.getCollection = async function (req, res) {
 };
 
 //update like count in db
-module.exports.updateLikes = function (req, res){
-  
-}
+module.exports.updateLikes = function (req, res) {
+  Post.updateOne({
+    likes: req.body.likes + 1,
+  });
+};

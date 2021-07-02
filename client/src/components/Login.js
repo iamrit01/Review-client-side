@@ -12,11 +12,6 @@ class Login extends Component {
       },
     };
   }
-  handleNameChange = (user_data) => {
-    const { user } = this.props;
-    user = user_data;
-    console.log("handle user :: ", user);
-  };
 
   onSubmit = (event) => {
     console.log("login this.state.user", this.state.user);
@@ -36,9 +31,6 @@ class Login extends Component {
         authAxios
           .post("/api/v1/profile/timeline")
           .then((userdata) => {
-            // this.setState({
-            //   name: userdata.data.data.name,
-            // });
             console.log("api timeline user data :: ", userdata.data);
 
             this.props.handleUserChanges(userdata.data);
