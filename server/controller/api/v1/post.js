@@ -4,7 +4,7 @@ module.exports.create = async function (req, res) {
   try {
     await User.findOne({ _id: req.body.id }, function (err, user) {
       if (err) {
-        return res.status(500).json({
+        return res.status(401).json({
           message: "error occure while finding the user in the db",
           error: err,
         });
@@ -17,6 +17,8 @@ module.exports.create = async function (req, res) {
       let post = Post.create({
         Description: req.body.description,
         user: req.body.id,
+        likes: 0,
+        dislikes: 0,
       }).then((post) => {
         if (!post) {
           return res.status(500).json({
@@ -37,3 +39,16 @@ module.exports.create = async function (req, res) {
   }
   // console.log("userid ", req);
 };
+
+module.exports.getCollection = async function (req, res) {
+  let posts = await Post.find({}).sort("-createdAt").populate("user");
+  return res.status(200).json({
+    message: "first try buddy ",
+    Data: posts,
+  });
+};
+
+//update like count in db
+module.exports.updateLikes = function (req, res){
+  
+}

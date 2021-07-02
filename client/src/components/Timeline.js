@@ -19,8 +19,25 @@ class Timeline extends Component {
         id: "",
         description: "",
       },
+      posts: [],
     };
   }
+  componentDidMount() {
+    this.getPostData();
+  }
+  getPostData = () => {
+    axios
+      .get("/api/v1/post/viewPosts")
+      .then((response) => {
+        this.setState({
+          posts: response.data.Data,
+        });
+        console.log("Data has been received! ", response.data.Data);
+      })
+      .catch(() => {
+        console.log("Error retrieving data!!");
+      });
+  };
 
   handlePostSubmit = (e) => {
     e.preventDefault();
@@ -31,17 +48,6 @@ class Timeline extends Component {
     }).catch = (err) => {
       console.log("error from the post axios  ", err);
     };
-    // const { user_id } = this.props;
-    // this.setState({
-    //   post: {
-    //     ...this.state.post,
-    //     id: user_id,
-    //   },
-    // });
-    // axios.post("/api/v1/post/create");
-    // console.log("hey submit button");
-    // console.log("this.state.post ", this.state.post);
-    // console.log("login user ", id);
   };
   handleDescriptionChanges = (e) => {
     console.log("e.targe.value ", e.target.value);
@@ -54,7 +60,10 @@ class Timeline extends Component {
       },
     });
   };
+
   render() {
+    console.log("timeline this.state", this.state);
+    const { posts } = this.state;
     return (
       <div className="timeline">
         <nav className="timeline_navbar">
@@ -93,7 +102,19 @@ class Timeline extends Component {
             </a>
           </div>
         </nav>
+        {/* <div>
+          {posts.map((post, index) => {
+            console.log(post.user.name);
 
+            return (
+              <div key={index}>
+                <h3>{post.user.name}</h3>
+                <p>{post.Description}</p>
+              </div>
+            );
+          })}
+          ;
+        </div> */}
         <div className="user_timeline">
           <div className="middle_container">
             <div className="heading">
@@ -103,13 +124,13 @@ class Timeline extends Component {
             <form className="post_content_container">
               <div className="content_textarea">
                 {/* <textarea
-                  name="description"
-                  value={this.state.post.description}
-                  rows={3}
-                  required
-                  placeholder="Enter &#10;Reviews &#10;here... "
-                  onChange={this.handleDescriptionChanges}
-                /> */}
+                name="description"
+                value={this.state.post.description}
+                rows={3}
+                required
+                placeholder="Enter &#10;Reviews &#10;here... "
+                onChange={this.handleDescriptionChanges}
+              /> */}
                 <input
                   type="text"
                   name="description"
@@ -123,7 +144,57 @@ class Timeline extends Component {
               </div>
             </form>
 
+            {/* fetch data from the db add print it on the timeline page */}
+            <div className="iterater"></div>
+
             <div className="post_lists">
+              {posts.map((post, index) => {
+                console.log(post.user.name);
+
+                return (
+                  <div key={index} className="post_item">
+                    <div className="item_header">
+                      <div className="item_user">
+                        <div className="user_name">
+                          <h3>{post.user.name}</h3>
+                        </div>
+                      </div>
+
+                      <div className="item_content">
+                        <div className="item_content_subheadlines">
+                          <p>{post.Description}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="item_btns">
+                      <div className="like_btn exprssion_btn">
+                        <button>
+                          <AiOutlineLike size={35} />
+                        </button>
+                        <div className="like_count count">
+                          <span>30</span>
+                        </div>
+                      </div>
+                      <div className="dislike_btn exprssion_btn">
+                        <button className="like_btn">
+                          <AiOutlineDislike size={35} />
+                        </button>
+                        <div className="like_count count ">
+                          <span>2</span>
+                        </div>
+                      </div>
+                      <div className="comment_count exprssion_btn">
+                        <button className="comment_btn">
+                          <AiOutlineComment size={35} />
+                        </button>
+                        <div className="comment_count count">
+                          <span>2</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
               <div className="post_item">
                 <div className="item_header">
                   <div className="item_user">
@@ -156,35 +227,10 @@ class Timeline extends Component {
                 <div className="item_content_media">
                   <img src="https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyaiUyMGtoYWxpZmF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
                 </div>
-                <div className="item_btns">
-                  <div className="like_btn exprssion_btn">
-                    <button>
-                      <AiOutlineLike size={35} />
-                    </button>
-                    <div className="like_count count">
-                      <span>30</span>
-                    </div>
-                  </div>
-                  <div className="dislike_btn exprssion_btn">
-                    <button className="like_btn">
-                      <AiOutlineDislike size={35} />
-                    </button>
-                    <div className="like_count count ">
-                      <span>2</span>
-                    </div>
-                  </div>
-                  <div className="comment_count exprssion_btn">
-                    <button className="comment_btn">
-                      <AiOutlineComment size={35} />
-                    </button>
-                    <div className="comment_count count">
-                      <span>2</span>
-                    </div>
-                  </div>
-                </div>
+
                 {/* <div className="item_comment_section">
-                <input type="text" placeholder="Enter Comments here..." />
-              </div> */}
+              <input type="text" placeholder="Enter Comments here..." />
+            </div> */}
               </div>
             </div>
             <div className="post_lists">
@@ -246,8 +292,8 @@ class Timeline extends Component {
                   </div>
                 </div>
                 {/* <div className="item_comment_section">
-                <input type="text" placeholder="Enter Comments here..." />
-              </div> */}
+              <input type="text" placeholder="Enter Comments here..." />
+            </div> */}
               </div>
             </div>
             <div className="post_lists">
@@ -311,8 +357,8 @@ class Timeline extends Component {
                   </div>
                 </div>
                 {/* <div className="item_comment_section">
-                <input type="text" placeholder="Enter Comments here..." />
-              </div> */}
+              <input type="text" placeholder="Enter Comments here..." />
+            </div> */}
               </div>
             </div>
           </div>
@@ -355,6 +401,7 @@ class Timeline extends Component {
             </div>
           </div>
         </div>
+        //{" "}
       </div>
     );
   }
