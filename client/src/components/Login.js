@@ -19,8 +19,9 @@ class Login extends Component {
     axios
       .post("/api/v1/users/login", this.state.user)
       .then((response) => {
-        console.log("on submit response ", response);
-        localStorage.setItem("token", response.data.token);
+        console.log("on submit response ", response.data.data.token);
+
+        localStorage.setItem("token", response.data.data.token);
         this.props.history.push("/api/v1/profile/timeline");
         const authAxios = axios.create({
           baseURL: "http://localhost:3001",

@@ -37,7 +37,6 @@ module.exports.create = async function (req, res) {
       message: "error in create post in schema",
     });
   }
-  // console.log("userid ", req);
 };
 
 module.exports.getCollection = async function (req, res) {
@@ -49,7 +48,7 @@ module.exports.getCollection = async function (req, res) {
 };
 
 //update like count in db
-module.exports.updateLikes = function (req, res) {
+module.exports.like = function (req, res) {
   Post.updateOne({
     likes: req.body.likes + 1,
   });
