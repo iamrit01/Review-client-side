@@ -48,8 +48,31 @@ module.exports.getCollection = async function (req, res) {
 };
 
 //update like count in db
-module.exports.like = function (req, res) {
-  Post.updateOne({
-    likes: req.body.likes + 1,
-  });
+module.exports.like = async function (req, res) {
+  console.log("like post request ", req);
+  try {
+    let post = await Post.findById(req.body.postId);
+    if (post.user == req.body.userId) {
+      const totalLikes = (await parseInt(req.body.currentLikes)) + 1;
+      console.log("total Likes :: ", totalLikes);
+      await post.update({
+        $set: { likes: totalLikes },
+      });
+
+      return res.status(201).json({
+        message: "successfully fetch the post ",
+        postDetails: post,
+      });
+    } else {
+      return res.status(401).json({
+        message: "your unauthorized to like the post",
+        post: post,
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      message: "error Occure!! while liking the post",
+      error: err,
+    });
+  }
 };
