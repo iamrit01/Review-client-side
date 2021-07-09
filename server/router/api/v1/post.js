@@ -8,4 +8,5 @@ const postController = require("../../../controller/api/v1/post");
 router.post("/create", postController.create);
 router.get("/viewPosts", postController.getCollection);
 router.post("/like", postController.like);
+router.post("/dislike", postController.dislike);
 module.exports = router;

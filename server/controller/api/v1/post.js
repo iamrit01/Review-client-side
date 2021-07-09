@@ -49,26 +49,18 @@ module.exports.getCollection = async function (req, res) {
 
 //update like count in db
 module.exports.like = async function (req, res) {
-  console.log("like post request ", req);
   try {
     let post = await Post.findById(req.body.postId);
-    if (post.user == req.body.userId) {
-      const totalLikes = (await parseInt(req.body.currentLikes)) + 1;
-      console.log("total Likes :: ", totalLikes);
-      await post.update({
-        $set: { likes: totalLikes },
-      });
 
-      return res.status(201).json({
-        message: "successfully fetch the post ",
-        postDetails: post,
-      });
-    } else {
-      return res.status(401).json({
-        message: "your unauthorized to like the post",
-        post: post,
-      });
-    }
+    const totalLikes = (await parseInt(req.body.likes)) + 1;
+    await post.updateOne({
+      $set: { likes: totalLikes },
+    });
+
+    return res.status(201).json({
+      message: "successfully fetch the post ",
+      postDetails: post,
+    });
   } catch (err) {
     return res.status(500).json({
       message: "error Occure!! while liking the post",
@@ -76,3 +68,26 @@ module.exports.like = async function (req, res) {
     });
   }
 };
+
+//dislike api
+module.exports.dislike = async function (req, res) {
+  try {
+    let post = await Post.findById(req.body.postId);
+    const totalDislikes = (await parseInt(req.body.dislikes)) - 1;
+    await post.updateOne({
+      $set: { dislikes: totalDislikes },
+    });
+
+    return res.status(201).json({
+      message: "successfully fetch the post ",
+      postDetails: post,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "error Occure!! while disliking the post",
+      error: err,
+    });
+  }
+};
+
+
