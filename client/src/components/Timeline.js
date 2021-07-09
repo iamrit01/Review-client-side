@@ -90,6 +90,29 @@ class Timeline extends Component {
         console.log("like button api error ", err);
       });
   };
+  handleDislikeButton = (post_index) => {
+    const postId = this.state.posts[post_index]._id;
+    const dislikes = this.state.posts[post_index].dislikes;
+    axios
+      .post("/api/v1/post/dislike", { postId, dislikes })
+      .then((response) => {
+        console.log("dislike response ", response);
+        this.setState({
+          post: [
+            ...this.state.posts.slice(0, post_index),
+            {
+              ...this.state.posts[post_index],
+              dislikes: response.data.postDetails.dislikes,
+            },
+            ...this.state.posts.slice(post_index + 1),
+          ],
+        });
+        this.getPostData();
+      })
+      .catch((err) => {
+        console.log("dislike button api error ! ", err);
+      });
+  };
 
   render() {
     console.log("timeline this.state", this.state);
@@ -183,7 +206,10 @@ class Timeline extends Component {
                         </div>
                       </div>
                       <div className="dislike_btn exprssion_btn">
-                        <button className="like_btn">
+                        <button
+                          onClick={() => this.handleDislikeButton(index)}
+                          className="like_btn"
+                        >
                           <AiOutlineDislike size={35} />
                         </button>
                         <div className="like_count count ">
