@@ -62,6 +62,34 @@ class Timeline extends Component {
       },
     });
   };
+  handleLikeButton = (post_index) => {
+    const post = this.state.posts[post_index];
+    const postId = this.state.posts[post_index]._id;
+    const likes = this.state.posts[post_index].likes;
+    // const userId = this.state.posts[post_index].user._id;
+    axios
+      .post("/api/v1/post/like", { postId, likes })
+      .then((response) => {
+        console.log(
+          "like button api response ",
+          response.data.postDetails.likes
+        );
+        this.setState({
+          posts: [
+            ...this.state.posts.slice(0, post_index),
+            {
+              ...this.state.posts[post_index],
+              likes: response.data.postDetails.likes,
+            },
+            ...this.state.posts.slice(post_index + 1),
+          ],
+        });
+        this.getPostData();
+      })
+      .catch((err) => {
+        console.log("like button api error ", err);
+      });
+  };
 
   render() {
     console.log("timeline this.state", this.state);
@@ -147,11 +175,11 @@ class Timeline extends Component {
                     </div>
                     <div className="item_btns">
                       <div className="like_btn exprssion_btn">
-                        <button>
+                        <button onClick={() => this.handleLikeButton(index)}>
                           <AiOutlineLike size={35} />
                         </button>
                         <div className="like_count count">
-                          <span>{this.state.post.likes}</span>
+                          <span>{post.likes}</span>
                         </div>
                       </div>
                       <div className="dislike_btn exprssion_btn">
@@ -159,7 +187,7 @@ class Timeline extends Component {
                           <AiOutlineDislike size={35} />
                         </button>
                         <div className="like_count count ">
-                          <span>{this.state.post.dislikes}</span>
+                          <span>{post.dislikes}</span>
                         </div>
                       </div>
                       <div className="comment_count exprssion_btn">
