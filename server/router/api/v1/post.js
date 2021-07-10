@@ -9,4 +9,5 @@ router.post("/create", postController.create);
 router.get("/viewPosts", postController.getCollection);
 router.post("/like", postController.like);
 router.post("/dislike", postController.dislike);
+router.delete("/delete", postController.delete);
 module.exports = router;

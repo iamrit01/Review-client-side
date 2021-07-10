@@ -90,4 +90,19 @@ module.exports.dislike = async function (req, res) {
   }
 };
 
-
+//delete post api
+module.exports.delete = async function (req, res) {
+  console.log("delete req ", req);
+  try {
+    let post = await Post.findById(req.body.id);
+    post.remove();
+    return res.status(200).json({
+      message: "post deleted successfully",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "error while deleting the post ",
+      error: err,
+    });
+  }
+};
