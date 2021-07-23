@@ -1,94 +1,80 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "../css/Login.css";
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        userId: "",
-        email: "",
-        password: "",
-      },
-    };
-  }
-
-  onSubmit = (event) => {
-    console.log("login this.state.user", this.state.user);
-    event.preventDefault();
-    axios
-      .post("/api/v1/users/login", this.state.user)
-      .then((response) => {
-        console.log("on submit response ", response.data.data.token);
-
-        localStorage.setItem("token", response.data.data.token);
-        this.props.history.push("/api/v1/profile/timeline");
-        const authAxios = axios.create({
-          baseURL: "http://localhost:3001",
-          headers: {
-            Authorization: `Bearer ${response.data.data.token}`,
-          },
-        });
-        authAxios
-          .post("/api/v1/profile/timeline")
-          .then((userdata) => {
-            console.log("api timeline user data :: ", userdata.data);
-
-            this.props.handleUserChanges(userdata.data);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+import { useHistory } from "react-router";
+const Login = () => {
+  const history = useHistory();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  let name, value;
+  const handleInputChanges = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setUser({ ...user, [name]: value });
   };
-  onEmailChange = (e) => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        email: e.target.value,
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    const { email, password } = user;
+    console.log("eh");
+    const response = await fetch("/api/v1/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     });
-  };
-  onPasswordChange = (e) => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        password: e.target.value,
-      },
-    });
+    const data = await response.json();
+    console.log(data);
+    if (response.status === 401 || response.status === 402) {
+      console.log("Invalid Credentials");
+      window.alert("Invalid Credentials");
+    } else if (response.status === 422) {
+      console.log("Please filled the required properly");
+      window.alert("Please filled the field properly");
+    } else if (response.status === 500) {
+      console.log("Server Error! 500");
+
+      window.alert("Server Error! 500");
+    } else {
+      console.log("Login Successfully :)");
+      history.push("/api/v1/profile/timeline");
+      window.alert("Login Successfully :)");
+    }
   };
 
-  render() {
-    return (
-      <form className="login-form">
-        <span className="login-signup-header">Log In</span>
-        <div className="field">
-          <input
-            type="email"
-            value={this.state.user.email}
-            placeholder="Enter Email"
-            required
-            onChange={this.onEmailChange}
-          />
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            value={this.state.user.password}
-            placeholder="Enter password"
-            required
-            onChange={this.onPasswordChange}
-          />
-        </div>
-        <div className="field">
-          <button onClick={this.onSubmit}>Log In</button>
-        </div>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="login-form" method="POST">
+      <span className="login-signup-header">Log In</span>
+      <div className="field">
+        <input
+          name="email"
+          type="email"
+          value={user.email}
+          onChange={handleInputChanges}
+          placeholder="Enter Email"
+          required
+        />
+      </div>
+      <div className="field">
+        <input
+          name="password"
+          type="password"
+          value={user.password}
+          onChange={handleInputChanges}
+          placeholder="Enter password"
+          required
+        />
+      </div>
+      <div className="field">
+        <input type="submit" name="login" value="Login" onClick={loginUser} />
+      </div>
+    </form>
+  );
+};
 
 export default Login;

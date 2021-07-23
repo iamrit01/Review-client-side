@@ -1,14 +1,8 @@
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 module.exports.timeLine = function (req, res) {
-  const token = req.headers.authorization.split(" ")[1];
-  const decodedToken = jwt.decode(token, dotenv.parsed.SERCET_KEY);
-  console.log("decoded token :: ", decodedToken);
-  return res.json(200, {
-    id: decodedToken._id,
-    email: decodedToken.email,
-    name: decodedToken.name,
-  });
+  console.log("hello timeline page ");
+  res.send(req.rootUser);
 };
 
 // // console.log("view Profile", req);

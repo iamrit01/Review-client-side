@@ -61,7 +61,7 @@ module.exports.login = async function (req, res) {
         httpOnly: true,
       });
       res.json({
-        message: "user login Successfully",
+        message: "Login Successfully :)",
       });
     } else {
       return res.status(402).json({

@@ -1,17 +1,16 @@
+require("dotenv").config();
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const app = express();
-// const port = 8000;
 const port = process.env.PORT || 3001;
-const passport = require("passport");
-const passportJWT = require("./config/passport-jwt-strategy");
 const db = require("./config/mongoose");
-const header = require("./middlewares/header");
+// const header = require("./middlewares/header");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(header);
+// app.use(header);
 app.use(cors());
 
 app.use("/", require("./router/index"));

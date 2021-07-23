@@ -113,6 +113,17 @@ class Timeline extends Component {
         console.log("dislike button api error ! ", err);
       });
   };
+  handleDeletePost = (index) => {
+    const id = this.state.posts[index]._id;
+    axios
+      .delete("/api/v1/post/delete", id)
+      .then((response) => {
+        console.log("delete response ", response);
+      })
+      .catch((err) => {
+        console.log("delete api error ", err);
+      });
+  };
 
   render() {
     console.log("timeline this.state", this.state);
@@ -193,6 +204,7 @@ class Timeline extends Component {
                       <div className="item_content">
                         <div className="item_content_subheadlines">
                           <p>{post.Description}</p>
+                          
                         </div>
                       </div>
                     </div>
