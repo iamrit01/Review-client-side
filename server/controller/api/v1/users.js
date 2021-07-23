@@ -1,6 +1,5 @@
 const User = require("../../../models/users");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
 
 //sigup api
 module.exports.sigup = async function (req, res) {
@@ -29,29 +28,6 @@ module.exports.sigup = async function (req, res) {
         message: "User registred successfully",
       });
     }
-
-    // if (req.body.password != req.body.confirmPassword) {
-    //   return res.json(401, {
-    //     message: "password is not match",
-    //   });
-    // }
-    // let user = await User.findOne({ email: req.body.email });
-    // if (!user) {
-    //   User.create(req.body, function (err, user) {
-    //     if (err) {
-    //       return res.json(500, {
-    //         message: "error in creating user while signing up",
-    //       });
-    //     }
-    //     return res.json(200, {
-    //       message: "user Created",
-    //     });
-    //   });
-    // } else {
-    //   return res.json(200, {
-    //     message: "user is already present",
-    //   });
-    // }
   } catch (err) {
     return res.json(500, {
       message: "Internal Server Error",
@@ -63,31 +39,37 @@ module.exports.sigup = async function (req, res) {
 //login api
 module.exports.login = async function (req, res) {
   try {
-    let user = await User.findOne({ email: req.body.email });
-    if (!user || user.password != req.body.password) {
-      return res.json(422, {
-        message: "Invalid Email / Passwrod",
+    let token;
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(422).json({
+        error: "please filled the field properly",
       });
     }
-    // res.cookie("jwt", token, {
-    //   expires: new Date(Date.now() + 50000),
-    //   httpOnly: true,
-    // });
-
-    const token = jwt.sign(user.toString(), dotenv.parsed.SECRET_KEY);
-    // token: jwt.sign(user.toJSON(), dotenv.parsed.SECRET_KEY, {
-    //       expiresIn: "100000",
-    //     }),
-    // console.log("token ", cookies);
-    res.cookie("jwt", token);
-
-    console.log("cookies ", res.cookie);
-    return res.json(200, {
-      message: "sign in successfully , here is you token keep is safe buddy",
-      token,
-    });
+    const userLogin = await User.findOne({ email: email });
+    if (userLogin) {
+      if (userLogin.password !== password) {
+        return res.status(401).json({
+          message: "Email/password is invalid",
+        });
+      }
+      console.log("Email ", userLogin);
+      token = await userLogin.generateAuthToken();
+      console.log("at login contoller token ", token);
+      res.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
+      res.json({
+        message: "user login Successfully",
+      });
+    } else {
+      return res.status(402).json({
+        error: "Invalid Email id",
+      });
+    }
   } catch (err) {
-    return res.json(500, {
+    return res.status(500).json({
       message: "Internal Server Error",
     });
   }
