@@ -58,7 +58,8 @@ module.exports.like = async function (req, res) {
 //dislike api
 module.exports.dislike = async function (req, res) {
   try {
-    let post = await Post.findById(req.body.postId);
+    console.log("dislike ---> ", req);
+    let post = await Post.findById(req.body.id);
     const totalDislikes = (await parseInt(req.body.dislikes)) - 1;
     await post.updateOne({
       $set: { dislikes: totalDislikes },

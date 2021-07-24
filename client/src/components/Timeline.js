@@ -78,29 +78,28 @@ const Timeline = () => {
       window.alert("Server Error ");
     }
   };
-  // handleDislikeButton = (post_index) => {
-  //   const postId = this.state.posts[post_index]._id;
-  //   const dislikes = this.state.posts[post_index].dislikes;
-  //   axios
-  //     .post("/api/v1/post/dislike", { postId, dislikes })
-  //     .then((response) => {
-  //       console.log("dislike response ", response);
-  //       this.setState({
-  //         post: [
-  //           ...this.state.posts.slice(0, post_index),
-  //           {
-  //             ...this.state.posts[post_index],
-  //             dislikes: response.data.postDetails.dislikes,
-  //           },
-  //           ...this.state.posts.slice(post_index + 1),
-  //         ],
-  //       });
-  //       this.getPostData();
-  //     })
-  //     .catch((err) => {
-  //       console.log("dislike button api error ! ", err);
-  //     });
-  // };
+  const dislikePost = async (post_index) => {
+    const id = posts[post_index]._id;
+    const dislikes = posts[post_index].dislikes;
+    const res = await fetch("/api/v1/post/dislike", {
+      method: "POST",
+      headers: {
+        Accept: "appllication/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        id,
+        dislikes,
+      }),
+    });
+    let data = res.json();
+    if (!data || data.status === 401) {
+      window.alert("Unauthorized User");
+    } else if (data.status === 500) {
+      window.alert("Server Error ");
+    }
+  };
   // handleDeletePost = (index) => {
   //   const id = this.state.posts[index]._id;
   //   axios
@@ -113,8 +112,6 @@ const Timeline = () => {
   //     });
   // };
 
-  // console.log("timeline this.state", this.state);
-  // const { posts } = this.state;
   console.log("outter state posts ", posts);
   return (
     <div>
@@ -166,7 +163,7 @@ const Timeline = () => {
                 </div>
                 <div className="dislike_btn exprssion_btn">
                   <button
-                    onClick={() => this.handleDislikeButton(index)}
+                    onClick={() => dislikePost(index)}
                     className="like_btn"
                   >
                     <AiOutlineDislike size={35} />
