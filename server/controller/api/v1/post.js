@@ -36,7 +36,7 @@ module.exports.getCollection = async function (req, res) {
 //update like count in db
 module.exports.like = async function (req, res) {
   try {
-    let post = await Post.findById(req.body.postId);
+    let post = await Post.findById(req.body.id);
 
     const totalLikes = (await parseInt(req.body.likes)) + 1;
     await post.updateOne({

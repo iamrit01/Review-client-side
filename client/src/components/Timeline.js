@@ -48,7 +48,7 @@ const Timeline = () => {
         description,
       }),
     });
-    let data = res.json();
+    let data = await res.json();
     if (!data || data.status === 401) {
       window.alert("Unauthorized User");
     } else if (data.status === 500) {
@@ -56,33 +56,27 @@ const Timeline = () => {
     }
   };
 
-  const likePost = (post_index) => {
-    const post = this.state.posts[post_index];
-    const postId = this.state.posts[post_index]._id;
-    const likes = this.state.posts[post_index].likes;
-    // const userId = this.state.posts[post_index].user._id;
-    axios
-      .post("/api/v1/post/like", { postId, likes })
-      .then((response) => {
-        console.log(
-          "like button api response ",
-          response.data.postDetails.likes
-        );
-        this.setState({
-          posts: [
-            ...this.state.posts.slice(0, post_index),
-            {
-              ...this.state.posts[post_index],
-              likes: response.data.postDetails.likes,
-            },
-            ...this.state.posts.slice(post_index + 1),
-          ],
-        });
-        this.getPostData();
-      })
-      .catch((err) => {
-        console.log("like button api error ", err);
-      });
+  const likePost = async (post_index) => {
+    const id = posts[post_index]._id;
+    const likes = posts[post_index].likes;
+    const res = await fetch("/api/v1/post/like", {
+      method: "POST",
+      headers: {
+        Accept: "appllication/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        id,
+        likes,
+      }),
+    });
+    let data = res.json();
+    if (!data || data.status === 401) {
+      window.alert("Unauthorized User");
+    } else if (data.status === 500) {
+      window.alert("Server Error ");
+    }
   };
   // handleDislikeButton = (post_index) => {
   //   const postId = this.state.posts[post_index]._id;
