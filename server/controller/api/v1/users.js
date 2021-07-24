@@ -75,6 +75,12 @@ module.exports.login = async function (req, res) {
   }
 };
 
+module.exports.logout = function (req, res) {
+  console.log("logout");
+  res.clearCookie("jwtoken", { path: "/" });
+  res.status(200).send("user logout");
+};
+
 //update user details api
 module.exports.update = function (req, res) {
   console.log(req);

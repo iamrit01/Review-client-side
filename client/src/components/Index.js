@@ -6,8 +6,10 @@ import Profile from "./Profile";
 import Timeline from "./Timeline";
 import Navigation from "./Navigation";
 import About from "./About";
+import Logout from "./Logout";
 
 export {
+  Logout,
   About,
   Navigation,
   Navbar,

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import "../css/Navbar.css";
 
-
 class Navbar extends Component {
   render() {
     const { name } = this.props;
@@ -41,6 +40,9 @@ class Navbar extends Component {
 
               <li>
                 <Link to="/signUP">Sign Up</Link>
+              </li>
+              <li>
+                <Link to="/logout">Logout</Link>
               </li>
             </ul>
           </div>

@@ -7,6 +7,7 @@ import {
   Profile,
   Navigation,
   About,
+  Logout,
 } from "./Index";
 import { Route, Switch } from "react-router-dom";
 import { Component } from "react";
@@ -53,6 +54,7 @@ class App extends Component {
             render={(props) => <Profile {...props} />}
           />
           <Route path="/about" component={About} />
+          <Route path="/logout" component={Logout} />
 
           <Route exact component={NotFound} />
         </Switch>
