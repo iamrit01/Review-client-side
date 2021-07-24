@@ -40,6 +40,7 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.getCollection = async function (req, res) {
+  
   let posts = await Post.find({}).sort("-createdAt").populate("user");
   return res.status(200).json({
     message: "first try buddy ",

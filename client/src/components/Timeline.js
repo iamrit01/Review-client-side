@@ -140,14 +140,16 @@ class Timeline extends Component {
                 <div className="nav_item_title">Timeline</div>
               </div>
             </a>
-            <a href="/api/v1/profile/view" className="nav_link">
-              <div className="nav_item">
-                <div className="nav_item_icon">
-                  <FiUser size={20} />
+            {/* <a className="nav_link">
+                <Route path="/profile" Component={Profile} />
+                <div className="nav_item">
+                  <div className="nav_item_icon">
+                    <FiUser size={20} />
+                  </div>
+                  <div className="nav_item_title">Profile</div>
                 </div>
-                <div className="nav_item_title">Profile</div>
-              </div>
-            </a>
+              </a> */}
+
             <a href="/api/v1/profile/notification" className="nav_link">
               <div className="nav_item">
                 <div className="nav_item_icon">
@@ -204,7 +206,6 @@ class Timeline extends Component {
                       <div className="item_content">
                         <div className="item_content_subheadlines">
                           <p>{post.Description}</p>
-                          
                         </div>
                       </div>
                     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import axios from "axios";
 import "../css/Signup.css";
 const Signup = () => {
   const history = useHistory();
@@ -16,38 +15,6 @@ const Signup = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  // onNameChange = (e) => {
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       name: e.target.value,
-  //     },
-  //   });
-  // };
-  // onEmailChange = (e) => {
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       email: e.target.value,
-  //     },
-  //   });
-  // };
-  // onPasswordChange = (e) => {
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       password: e.target.value,
-  //     },
-  //   });
-  // };
-  // onconfirmPasswordChange = (e) => {
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       confirmPassword: e.target.value,
-  //     },
-  //   });
-  // };
 
   const signUpUser = async (event) => {
     event.preventDefault();
@@ -75,17 +42,6 @@ const Signup = () => {
       history.push("/api/v1/users/login");
       window.alert("Registration  Successfully :)");
     }
-    // console.log("this.state.user ", this.state.user);
-    // await axios
-    //   .post("/api/v1/users/signup", this.state.user)
-    //   .then((response) => {
-    //     console.log("response ", response);
-    //     // localStorage.item('token', response.to)
-    //     this.props.history.push("/api/v1/users/login");
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
   };
 
   return (

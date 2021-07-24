@@ -2,10 +2,11 @@ import {
   Navbar,
   Login,
   Signup,
-  Home,
   Timeline,
   NotFound,
   Profile,
+  Navigation,
+  About,
 } from "./Index";
 import { Route, Switch } from "react-router-dom";
 import { Component } from "react";
@@ -32,10 +33,11 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar name={this.state.user.name} />
+        <Navigation />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Timeline} />
           <Route
-            path="/api/v1/users/login"
+            path="/login"
             render={(props) => (
               <Login
                 {...props}
@@ -44,15 +46,15 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/api/v1/users/create" component={Signup} />
-          <Route path="/api/v1/profile/viewProfile" component={Profile} />
+          <Route path="/signUp" component={Signup} />
           <Route
-            path="/api/v1/profile/timeline"
-            render={(props) => (
-              <Timeline user_id={this.state.user.id} user={this.state.user} />
-            )}
+            exact
+            path="/profile"
+            render={(props) => <Profile {...props} />}
           />
-          <Route component={NotFound} />
+          <Route path="/about" component={About} />
+
+          <Route exact component={NotFound} />
         </Switch>
       </div>
     );

@@ -42,7 +42,7 @@ const Login = () => {
       window.alert("Server Error! 500");
     } else {
       console.log("Login Successfully :)");
-      history.push("/api/v1/profile/timeline");
+      history.push("/");
       window.alert("Login Successfully :)");
     }
   };
