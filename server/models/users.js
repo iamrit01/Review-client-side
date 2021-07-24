@@ -15,6 +15,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timeStamp: true,
@@ -24,8 +32,9 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.generateAuthToken = async function () {
   // console.log("--------> ", process.env.SECRET_KEY);
   try {
-    const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
-    console.log(token);
+    let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+    this.tokens = this.tokens.concat({ token: token });
+    await this.save();
     return token;
   } catch (err) {
     console.log("error while generating the auth token ", err);

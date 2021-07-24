@@ -4,7 +4,10 @@ const auth = async (req, res, next) => {
   try {
     const token = req.cookies.jwtoken;
     const verfiyToken = jwt.verify(token, process.env.SECRET_KEY);
-    const rootUser = await User.findOne({ _id: verfiyToken._id });
+    const rootUser = await User.findOne({
+      _id: verfiyToken._id,
+      "tokens.token": token,
+    });
     if (!rootUser) {
       throw new Error("User not found");
     }
