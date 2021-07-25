@@ -6,6 +6,11 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
     },
+    image: {
+      type: String,
+      trim: true,
+      require: true,
+    },
     Description: {
       type: String,
       require: true,

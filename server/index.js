@@ -6,6 +6,10 @@ const db = require("./config/mongoose");
 const port = process.env.PORT || 3001;
 
 const app = express();
+
+//use uploads folder to save images
+app.use("/uploads", express.static("uploads"));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

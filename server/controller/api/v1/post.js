@@ -1,24 +1,32 @@
 const Post = require("../../../models/posts");
 const User = require("../../../models/users");
 module.exports.create = async function (req, res) {
+  console.log("create -->> ", req);
   try {
     let post = await Post.create({
       Description: req.body.description,
       user: req.userID,
+      image: req.file.path,
       likes: 0,
       dislikes: 0,
-    }).then((post) => {
-      if (!post) {
-        return res.status(500).json({
-          message: "post is not create in db",
+    })
+      .then((post) => {
+        if (!post) {
+          return res.status(500).json({
+            message: "post is not create in db",
+          });
+        }
+        console.log("post details ", post);
+        return res.status(200).json({
+          message: "post is created",
+          post,
         });
-      }
-      console.log("post details ", post);
-      return res.status(200).json({
-        message: "post is created",
-        post,
+      })
+      .catch((err) => {
+        return res.status(400).json({
+          error: err,
+        });
       });
-    });
   } catch (err) {
     return res.status(500).json({
       message: "error in create post in schema",
@@ -92,4 +100,10 @@ module.exports.delete = async function (req, res) {
       error: err,
     });
   }
+};
+
+module.exports.createCategory = function (req, res) {
+  res.json({
+    message: "success",
+  });
 };

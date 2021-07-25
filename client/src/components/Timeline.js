@@ -14,6 +14,7 @@ import {
 const Timeline = () => {
   const [posts, setPosts] = useState([]);
   const [description, setDiscription] = useState("");
+  const [image, setImage] = useState("");
   useEffect(() => {
     getPosts();
   }, [...posts]);
@@ -34,19 +35,28 @@ const Timeline = () => {
       console.log("view Post error ", err);
     }
   };
+  const upload = ({ target: { files } }) => {
+    let data = new FormData();
+    data.append("categoryImage", files[0]);
+    setImage(data);
+  };
 
   const submitPost = async (e) => {
     e.preventDefault();
+    let formData = new FormData();
+    formData.append("description", description);
+    formData.append("categoryImage", image);
     const res = await fetch("/api/v1/post/create", {
       method: "POST",
-      headers: {
-        Accept: "appllication/json",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        description,
-      }),
+      // headers: {
+      //   Accept: "appllication/json",
+      //   "Content-Type": "application/json",
+      // },
+      // credentials: "include",
+      // body: JSON.stringify({
+      //   description,
+      // }),
+      body: formData,
     });
     let data = await res.json();
     if (!data || data.status === 401) {
@@ -115,7 +125,11 @@ const Timeline = () => {
   console.log("outter state posts ", posts);
   return (
     <div>
-      <form className="post_content_container" method="POST">
+      <form
+        className="post_content_container"
+        method="POST"
+        encType="multipart/form-data"
+      >
         <div className="content_textarea">
           <input
             type="text"
@@ -126,6 +140,17 @@ const Timeline = () => {
             required
           />
         </div>
+        <div>
+          <input
+            type="file"
+            name="categoryImage"
+            // value={description}
+            onChange={(e) => setImage(e.target.files[0])}
+            // placeholder="Enter Reviews here..."
+            required
+          />
+        </div>
+
         <div className="content_post_btn">
           <input
             type="submit"
@@ -142,13 +167,16 @@ const Timeline = () => {
               <div className="item_header">
                 <div className="item_user">
                   <div className="user_name">
-                    <h4>{post.user.name}</h4>
+                    <h4>{post.name}</h4>
                   </div>
                 </div>
 
                 <div className="item_content">
                   <div className="item_content_subheadlines">
                     <p>{post.Description}</p>
+                  </div>
+                  <div className="item_content_media">
+                    <img src={`${post.image}`} alt="..." />
                   </div>
                 </div>
               </div>
