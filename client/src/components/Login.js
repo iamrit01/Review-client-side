@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../css/Login.css";
 import { useHistory } from "react-router";
+import { UserContext } from "./App";
 const Login = () => {
+  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
   const [user, setUser] = useState({
     email: "",
@@ -38,9 +40,9 @@ const Login = () => {
       window.alert("Please filled the field properly");
     } else if (response.status === 500) {
       console.log("Server Error! 500");
-
       window.alert("Server Error! 500");
     } else {
+      dispatch({ type: "USER", payload: true });
       console.log("Login Successfully :)");
       history.push("/");
       window.alert("Login Successfully :)");

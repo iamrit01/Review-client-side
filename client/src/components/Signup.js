@@ -39,7 +39,7 @@ const Signup = () => {
       console.log("Server Error! 500");
       window.alert("Server Error! 500");
     } else {
-      history.push("/api/v1/users/login");
+      history.push("/login");
       window.alert("Registration  Successfully :)");
     }
   };
