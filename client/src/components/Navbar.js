@@ -4,12 +4,18 @@ import { FiSearch } from "react-icons/fi";
 import "../css/Navbar.css";
 import { UserContext } from "./App";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const { state, dispatch } = useContext(UserContext);
   const RenderMenu = () => {
     if (state) {
       return (
         <>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/profile">Profie</Link>
+          </li>
           <li>
             <Link to="/logout">Logout</Link>
           </li>
@@ -54,7 +60,7 @@ const Navbar = () => {
             alt="user-dp"
             id="user-dp"
           />
-          {/* <span>{name}</span> */}
+          <span>{props.name}</span>
         </div>
         <div className="nav-links">
           <ul>

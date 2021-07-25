@@ -47,6 +47,7 @@ module.exports.login = async function (req, res) {
       });
     }
     const userLogin = await User.findOne({ email: email });
+    console.log("login user data ", userLogin);
     if (userLogin) {
       if (userLogin.password !== password) {
         return res.status(401).json({
@@ -61,6 +62,7 @@ module.exports.login = async function (req, res) {
         httpOnly: true,
       });
       res.json({
+        name: userLogin.name,
         message: "Login Successfully :)",
       });
     } else {

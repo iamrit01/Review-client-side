@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "../css/Login.css";
 import { useHistory } from "react-router";
 import { UserContext } from "./App";
-const Login = () => {
+const Login = (props) => {
   const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
   const [user, setUser] = useState({
@@ -31,7 +31,7 @@ const Login = () => {
       }),
     });
     const data = await response.json();
-    console.log(data);
+    console.log("login user data", data);
     if (response.status === 401 || response.status === 402) {
       console.log("Invalid Credentials");
       window.alert("Invalid Credentials");
@@ -44,6 +44,8 @@ const Login = () => {
     } else {
       dispatch({ type: "USER", payload: true });
       console.log("Login Successfully :)");
+      console.log("login props", props.handleName);
+      props.handleName(data.name);
       history.push("/");
       window.alert("Login Successfully :)");
     }
