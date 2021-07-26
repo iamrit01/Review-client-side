@@ -20,6 +20,7 @@ h4 {
   align-items: center;
 }
 .image_container img {
+  object-fit: cover;
   width: 80%;
   height: 70%;
   border: 2px solid;
@@ -28,15 +29,11 @@ h4 {
   width: 50vw;
   display: flex;
   flex-direction: column;
-  /* background-color: aquamarine; */
   align-items: center;
-  /* justify-content: space-around; */
   justify-content: center;
 }
 
 .info_item {
-  /* background-color: chocolate;
-   */
   font-size: x-large;
   display: flex;
   flex-direction: row;

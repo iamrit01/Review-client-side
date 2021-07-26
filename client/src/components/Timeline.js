@@ -48,14 +48,6 @@ const Timeline = () => {
     formData.append("categoryImage", image);
     const res = await fetch("/api/v1/post/create", {
       method: "POST",
-      // headers: {
-      //   Accept: "appllication/json",
-      //   "Content-Type": "application/json",
-      // },
-      // credentials: "include",
-      // body: JSON.stringify({
-      //   description,
-      // }),
       body: formData,
     });
     let data = await res.json();
@@ -144,9 +136,7 @@ const Timeline = () => {
           <input
             type="file"
             name="categoryImage"
-            // value={description}
             onChange={(e) => setImage(e.target.files[0])}
-            // placeholder="Enter Reviews here..."
             required
           />
         </div>
@@ -214,95 +204,6 @@ const Timeline = () => {
         })}
       </div>
     </div>
-    // <div className="timeline">
-    //   <nav className="timeline_navbar">
-    //     <div className="profile_nav_container">
-    //       <a href="/api/v1/profile/timeline" className="nav_link">
-    //         <div className="nav_item">
-    //           <div className="nav_item_icon">
-    //             <AiOutlineHome size={20} />
-    //           </div>
-    //           <div className="nav_item_title">Timeline</div>
-    //         </div>
-    //       </a>
-    //       {/* <a className="nav_link">
-    //           <Route path="/profile" Component={Profile} />
-    //           <div className="nav_item">
-    //             <div className="nav_item_icon">
-    //               <FiUser size={20} />
-    //             </div>
-    //             <div className="nav_item_title">Profile</div>
-    //           </div>
-    //         </a> */}
-
-    //       <a href="/api/v1/profile/notification" className="nav_link">
-    //         <div className="nav_item">
-    //           <div className="nav_item_icon">
-    //             <IoNotificationsOutline size={20} />
-    //           </div>
-    //           <div className="nav_item_title">Notification</div>
-    //         </div>
-    //       </a>
-    //       <a href="/api/v1/profile/message" className="nav_link">
-    //         <div className="nav_item">
-    //           <div className="nav_item_icon">
-    //             <AiOutlineMessage size={20} />
-    //           </div>
-    //           <div className="nav_item_title">Message</div>
-    //         </div>
-    //       </a>
-    //     </div>
-    //   </nav>
-
-    //   <div className="user_timeline">
-    //     <div className="middle_container">
-    //       <div className="heading">
-    //         <h2>Home</h2>
-    //       </div>
-
-    //       {/* fetch data from the db add print it on the timeline page */}
-
-    //     </div>
-    //     <div className="right_group_container">
-    //       <div className="group_container_lists ">
-    //         <h3>Groups</h3>
-
-    //         <div className="group_container_list_items nav_link">
-    //           <div className="group_container_list_item_icon nav_item_icon">
-    //             <GrGroup size={20} />
-    //           </div>
-    //           <div className="group_container_list_item_heading nav_item_title">
-    //             International
-    //           </div>
-    //         </div>
-    //         <div className="group_container_list_items nav_link">
-    //           <div className="group_container_list_item_icon nav_item_icon">
-    //             <GrGroup size={20} />
-    //           </div>
-    //           <div className="group_container_list_item_heading nav_item_title">
-    //             National
-    //           </div>
-    //         </div>
-    //         <div className="group_container_list_items nav_link">
-    //           <div className="group_container_list_item_icon nav_item_icon">
-    //             <GrGroup size={20} />
-    //           </div>
-    //           <div className="group_container_list_item_heading nav_item_title">
-    //             Classmates
-    //           </div>
-    //         </div>
-    //         <div className="group_container_list_items nav_link">
-    //           <div className="group_container_list_item_icon nav_item_icon">
-    //             <GrGroup size={20} />
-    //           </div>
-    //           <div className="group_container_list_item_heading nav_item_title">
-    //             Friends Group
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
