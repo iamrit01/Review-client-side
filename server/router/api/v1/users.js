@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const userApi = require("../../../controller/api/v1/users");
 const auth = require("../../../middlewares/auth");
-router.post("/signup", userApi.sigup);
+const uploadMulter = require("../../../middlewares/upload");
+const validation = require("../../../middlewares/validation");
+const userApi = require("../../../controller/api/v1/users");
+router.post("/signup", uploadMulter, validation, userApi.sigup);
 router.post("/login", userApi.login);
 router.get("/logout", userApi.logout);
 router.post("/update", auth, userApi.update);

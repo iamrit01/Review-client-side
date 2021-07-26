@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 module.exports.sigup = async function (req, res) {
   console.log("request from signup page :: ", req);
   const { name, email, password, confirmPassword } = req.body;
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirmPassword || !req.file.path) {
     return res.status(422).json({
       error: "please filled the field properly",
     });
@@ -22,7 +22,12 @@ module.exports.sigup = async function (req, res) {
         error: "Password are not matching",
       });
     } else {
-      const user = new User({ name, email, password });
+      const user = new User({
+        name,
+        email,
+        password,
+        profileImage: req.file.path,
+      });
       await user.save();
       res.status(201).json({
         message: "User registred successfully",

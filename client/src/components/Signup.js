@@ -9,6 +9,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+  const [dp, setDp] = useState("");
   let name, value;
   const handleInputChanges = (e) => {
     name = e.target.name;
@@ -18,18 +19,17 @@ const Signup = () => {
 
   const signUpUser = async (event) => {
     event.preventDefault();
+    let formData = new FormData();
     const { name, email, password, confirmPassword } = user;
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
+    formData.append("categoryImage", dp);
     const response = await fetch("/api/v1/users/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        confirmPassword,
-      }),
+
+      body: formData,
     });
     const data = await response.json();
     if (!data || response.status === 422) {
@@ -45,7 +45,7 @@ const Signup = () => {
   };
 
   return (
-    <form className="login-form" method="POST">
+    <form className="login-form" method="POST" encType="multipart/form-data">
       <span className="login-signup-header">Sign Up</span>
       <div className="field">
         <input
@@ -84,6 +84,15 @@ const Signup = () => {
           type="password"
           value={user.confirmPassword}
           onChange={handleInputChanges}
+          required
+        />
+      </div>
+      <div className="field">
+        <input
+          name="categoryImage"
+          type="file"
+          // value={user.confirmPassword}
+          onChange={(e) => setDp(e.target.files[0])}
           required
         />
       </div>

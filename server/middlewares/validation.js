@@ -24,7 +24,7 @@ module.exports = (req, res, next) => {
     });
   }
   //check file size
-  if (req.file.size > 1024 * 1024 * 2) {
+  if (req.file.size > 1024 * 1024 * 5) {
     fs.unlinkSync(image);
     return res.status(400).json({
       error: "file is too large",
