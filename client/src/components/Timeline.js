@@ -116,58 +116,59 @@ const Timeline = () => {
 
   console.log("outter state posts ", posts);
   return (
-    <div>
-      <form
-        className="post_content_container"
-        method="POST"
-        encType="multipart/form-data"
-      >
-        <div className="content_textarea">
-          <input
-            type="text"
-            name="description"
-            value={description}
-            onChange={(e) => setDiscription(e.target.value)}
-            placeholder="Enter Reviews here..."
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="file"
-            name="categoryImage"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-          />
-        </div>
+    <div className="timeline">
+      <div>
+        <form
+          className="post_content_container"
+          method="POST"
+          encType="multipart/form-data"
+        >
+          <div className="content_textarea">
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={(e) => setDiscription(e.target.value)}
+              placeholder="Enter Reviews here..."
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="file"
+              name="categoryImage"
+              onChange={(e) => setImage(e.target.files[0])}
+              required
+            />
+          </div>
 
-        <div className="content_post_btn">
-          <input
-            type="submit"
-            name="submit_post"
-            value="Post"
-            onClick={submitPost}
-          />
-        </div>
-      </form>
+          <div className="content_post_btn">
+            <input
+              type="submit"
+              name="submit_post"
+              value="Post"
+              onClick={submitPost}
+            />
+          </div>
+        </form>
+      </div>
       <div className="post_lists">
         {posts.map((post, index) => {
           return (
             <div key={index} className="post_item">
-              <div className="item_header">
-                <div className="item_user">
+              {/* <div className="item_user">
                   <div className="user_name">
-                    <h4>{post.name}</h4>
+                    <h4>{post.user.name}</h4>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="item_content">
-                  <div className="item_content_subheadlines">
-                    <p>{post.Description}</p>
-                  </div>
-                  <div className="item_content_media">
-                    <img src={`${post.image}`} alt="..." />
-                  </div>
+              <div className="item_content">
+                <div className="item_content_subheadlines">
+                  <h4>{post.user.name}</h4>
+                  <p>{post.Description}</p>
+                </div>
+                <div className="item_content_media">
+                  <img src={`${post.image}`} alt="..." />
                 </div>
               </div>
               <div className="item_btns">
