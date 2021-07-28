@@ -162,13 +162,26 @@ const Timeline = () => {
                   </div>
                 </div> */}
 
-              <div className="item_content">
+              <div className="item">
                 <div className="item_content_subheadlines">
-                  <h4>{post.user.name}</h4>
-                  <p>{post.Description}</p>
+                  <div className="user_profile">
+                    <img
+                      src={`${post.user.profileImage}`}
+                      alt="user profile image"
+                    />
+                  </div>
+                  <div className="user_details">
+                    <h4 className="user_name">{post.user.name}</h4>
+                    <p>Location</p>
+                  </div>
                 </div>
-                <div className="item_content_media">
-                  <img src={`${post.image}`} alt="..." />
+                <div className="item_content">
+                  <div className="item_content_media">
+                    <img src={`${post.image}`} alt="review related image" />
+                  </div>
+                  <div className="item_description">
+                    <p>{post.Description}</p>
+                  </div>
                 </div>
               </div>
               <div className="item_btns">

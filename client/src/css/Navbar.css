@@ -9,8 +9,9 @@
   height: 50px;
 }
 .search-container {
+  right: 75px;
+  width: 200%;
   flex-grow: 0.5;
-  /* padding: 0 20px; */
   position: relative;
   display: flex;
 }
