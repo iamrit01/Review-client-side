@@ -90,14 +90,14 @@ module.exports.delete = async function (req, res) {
   console.log("delete req ", req);
   try {
     let post = await Post.findById(req.body.id);
-    post.remove();
+    await post.remove();
     return res.status(200).json({
       message: "post deleted successfully",
     });
   } catch (err) {
     return res.status(500).json({
       message: "error while deleting the post ",
-      error: err,
+      err,
     });
   }
 };

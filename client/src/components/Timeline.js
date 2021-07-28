@@ -5,6 +5,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
   AiOutlineComment,
+  AiOutlineDelete,
 } from "react-icons/ai";
 const Timeline = () => {
   const [posts, setPosts] = useState([]);
@@ -96,17 +97,24 @@ const Timeline = () => {
       window.alert("Server Error ");
     }
   };
-  // handleDeletePost = (index) => {
-  //   const id = this.state.posts[index]._id;
-  //   axios
-  //     .delete("/api/v1/post/delete", id)
-  //     .then((response) => {
-  //       console.log("delete response ", response);
-  //     })
-  //     .catch((err) => {
-  //       console.log("delete api error ", err);
-  //     });
-  // };
+  const deletePost = async (index) => {
+    const id = posts[index]._id;
+    console.log("post id ", id);
+    const res = await fetch("/api/v1/post/delete", {
+      method: "POST",
+      headers: {
+        Accept: "appllication/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+      credentials: "include",
+    });
+    const data = await res.json();
+    console.log("delete post response", data);
+    getPosts();
+  };
 
   console.log("outter state posts ", posts);
   return (
@@ -200,6 +208,14 @@ const Timeline = () => {
                   <div className="comment_count count">
                     <span>2</span>
                   </div>
+                </div>
+                <div className="exprssion_btn">
+                  <button
+                    className="comment_btn"
+                    onClick={() => deletePost(index)}
+                  >
+                    <AiOutlineDelete size={35} />
+                  </button>
                 </div>
               </div>
             </div>
