@@ -91,16 +91,16 @@ const Signup = () => {
         <input
           name="categoryImage"
           type="file"
-          // value={user.confirmPassword}
           onChange={(e) => setDp(e.target.files[0])}
           required
         />
       </div>
       <div className="field">
         <input
+          className="field_button"
           type="submit"
           name="signUp"
-          value="signUp"
+          value="Sign Up"
           onClick={signUpUser}
         />
       </div>

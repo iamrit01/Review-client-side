@@ -75,7 +75,13 @@ const Login = (props) => {
         />
       </div>
       <div className="field">
-        <input type="submit" name="login" value="Login" onClick={loginUser} />
+        <input
+          className="field_button"
+          type="submit"
+          name="login"
+          value="Login"
+          onClick={loginUser}
+        />
       </div>
     </form>
   );

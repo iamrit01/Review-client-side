@@ -1,31 +1,7 @@
-/* body {
-  margin: 0;
-  box-sizing: border-box;
-}
-.login {
-  height: 89vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(#f6c231, #8acbffb5);
-}
-.login-container {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 1px 1px 9px rgb(0 8 0);
-}
-.input-container {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-} */
 .login-signup-header {
   font-weight: 600;
   font-size: 30px;
-  color: #f6c231;
+  color: #86afcb;
 }
 .login-form {
   background-color: #fff;
@@ -55,17 +31,17 @@
 .field input:focus {
   outline: none;
 }
-.field button {
+.field_button {
   width: 100%;
   margin-top: 20px;
-  background: #f6c231;
+  background: #86afcb;
   border-radius: 2px;
   color: #fff;
-  font-size: 20px;
+  font-size: 25px;
   padding: 9px;
   border: none;
   outline: none;
 }
-.field button:hover {
+.field_button:hover {
   cursor: pointer;
 }

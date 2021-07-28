@@ -38,11 +38,11 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar">
-      <div className="logo-container">
+      <div className="logo_container">
         <Link to="/">
           <img
             className="logo"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yPH54tvGXpnR-YG4lLq6JJVQwnzQRBqO8Q&usqp=CAU"
+            src="https://img.icons8.com/cotton/64/000000/worldwide-location--v2.png"
             alt="logo"
           />
         </Link>
@@ -50,16 +50,17 @@ const Navbar = (props) => {
       <div>
         <div className="search-container">
           <FiSearch className="search-icon" />
-          <input placeholder="Search here.." />
+          <input placeholder="Search here.." class="search-query" />
         </div>
       </div>
       <div className="right-nav">
         <div className="user">
           <img
-            src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
             alt="user-dp"
             id="user-dp"
+            src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
           />
+
           <span>{props.name}</span>
         </div>
         <div className="nav-links">
