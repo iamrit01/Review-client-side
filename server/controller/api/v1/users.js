@@ -68,6 +68,7 @@ module.exports.login = async function (req, res) {
       });
       res.json({
         name: userLogin.name,
+        profileImage: userLogin.profileImage,
         message: "Login Successfully :)",
       });
     } else {

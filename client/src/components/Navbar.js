@@ -5,6 +5,7 @@ import "../css/Navbar.css";
 import { UserContext } from "./App";
 
 const Navbar = (props) => {
+  console.log("nav bar props ", props.profileImage);
   const { state, dispatch } = useContext(UserContext);
   const RenderMenu = () => {
     if (state) {
@@ -35,6 +36,28 @@ const Navbar = (props) => {
       );
     }
   };
+  const RenderDp = () => {
+    // const { state, dispatch } = useContext(UserContext);
+    if (state) {
+      return (
+        <img
+          alt="user-dp"
+          id="user-dp"
+          src={`${props.profileImage}`}
+          // src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
+        />
+      );
+    } else {
+      return (
+        <img
+          alt="user-dp"
+          id="user-dp"
+          // src={`${props.profileImage}`}
+          src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
+        />
+      );
+    }
+  };
 
   return (
     <div className="navbar">
@@ -55,11 +78,7 @@ const Navbar = (props) => {
       </div>
       <div className="right-nav">
         <div className="user">
-          <img
-            alt="user-dp"
-            id="user-dp"
-            src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
-          />
+          <RenderDp />
 
           <span>{props.name}</span>
         </div>

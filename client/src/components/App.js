@@ -17,15 +17,21 @@ export const UserContext = createContext();
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   return (
     <>
       <UserContext.Provider value={{ state, dispatch }}>
-        <Navbar name={name} />
+        <Navbar name={name} profileImage={image} />
         <Switch>
           <Route exact path="/" component={Timeline} />
           <Route
             path="/login"
-            render={() => <Login handleName={(name) => setName(name)} />}
+            render={() => (
+              <Login
+                handleName={(name) => setName(name)}
+                handleImage={(image) => setImage(image)}
+              />
+            )}
           />
           <Route path="/signUp" component={Signup} />
           <Route exact path="/profile" component={Profile} />

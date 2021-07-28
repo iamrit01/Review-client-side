@@ -1,10 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Timeline.css";
-import { AiOutlineHome, AiOutlineMessage } from "react-icons/ai";
-import { FiUser } from "react-icons/fi";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { GrGroup } from "react-icons/gr";
-import axios from "axios";
 
 import {
   AiOutlineLike,
@@ -35,12 +30,6 @@ const Timeline = () => {
       console.log("view Post error ", err);
     }
   };
-  const upload = ({ target: { files } }) => {
-    let data = new FormData();
-    data.append("categoryImage", files[0]);
-    setImage(data);
-  };
-
   const submitPost = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -156,12 +145,6 @@ const Timeline = () => {
         {posts.map((post, index) => {
           return (
             <div key={index} className="post_item">
-              {/* <div className="item_user">
-                  <div className="user_name">
-                    <h4>{post.user.name}</h4>
-                  </div>
-                </div> */}
-
               <div className="item">
                 <div className="item_content_subheadlines">
                   <div className="user_profile">

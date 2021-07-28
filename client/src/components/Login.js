@@ -44,8 +44,10 @@ const Login = (props) => {
     } else {
       dispatch({ type: "USER", payload: true });
       console.log("Login Successfully :)");
-      console.log("login props", props.handleName);
+      console.log("profile image ", data.profileImage);
+      console.log("login props", data.name);
       props.handleName(data.name);
+      props.handleImage(data.profileImage);
       history.push("/");
       window.alert("Login Successfully :)");
     }
