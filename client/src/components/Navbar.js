@@ -37,25 +37,15 @@ const Navbar = (props) => {
     }
   };
   const RenderDp = () => {
-    // const { state, dispatch } = useContext(UserContext);
     if (state) {
       return (
-        <img
-          alt="user-dp"
-          id="user-dp"
-          src={`${props.profileImage}`}
-          // src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
-        />
+        <div className="user">
+          <img alt="user-dp" id="user-dp" src={`${props.profileImage}`} />
+          <span>{props.name}</span>
+        </div>
       );
     } else {
-      return (
-        <img
-          alt="user-dp"
-          id="user-dp"
-          // src={`${props.profileImage}`}
-          src="https://image.flaticon.com/icons/png/512/2922/2922524.png"
-        />
-      );
+      return <div className="user"></div>;
     }
   };
 
@@ -77,11 +67,8 @@ const Navbar = (props) => {
         </div>
       </div>
       <div className="right-nav">
-        <div className="user">
-          <RenderDp />
+        <RenderDp />
 
-          <span>{props.name}</span>
-        </div>
         <div className="nav-links">
           <ul>
             <RenderMenu />

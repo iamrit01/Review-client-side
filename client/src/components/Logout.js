@@ -19,6 +19,7 @@ const Logout = () => {
     });
     dispatch({ type: "USER", payload: false });
     history.push("/login", { replace: true });
+    window.location.reload();
   };
   return (
     <>

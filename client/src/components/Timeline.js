@@ -63,6 +63,11 @@ const Timeline = () => {
       }),
     });
     let data = res.json();
+    // let temp_post = posts;
+    // temp_post[post_index]["likes"] = temp_post[post_index]["likes"] + 1;
+    // setPosts({
+    //   temp_post,
+    // });
     if (!data || data.status === 401) {
       window.alert("Unauthorized User");
     } else if (data.status === 500) {
@@ -133,6 +138,7 @@ const Timeline = () => {
 
           <div className="content_post_btn">
             <input
+              className="field_button"
               type="submit"
               name="submit_post"
               value="Post"

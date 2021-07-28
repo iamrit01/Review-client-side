@@ -49,6 +49,7 @@ input.search-query {
 }
 #user-dp {
   height: 40px;
+  border-radius: 50px;
 }
 .user {
   display: flex;

@@ -67,8 +67,7 @@ module.exports.login = async function (req, res) {
         httpOnly: true,
       });
       res.json({
-        name: userLogin.name,
-        profileImage: userLogin.profileImage,
+        userLogin,
         message: "Login Successfully :)",
       });
     } else {
@@ -99,4 +98,8 @@ module.exports.update = function (req, res) {
       message: "You must provide a body for update",
     });
   }
+};
+module.exports.getUser = function (req, res) {
+  console.log("login user ", req.rootUser);
+  return res.send(req.rootUser);
 };
