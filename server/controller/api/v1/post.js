@@ -7,6 +7,9 @@ module.exports.create = async function (req, res) {
       Description: req.body.description,
       user: req.userID,
       image: req.file.path,
+      address: req.body.address,
+      longitude: req.body.longitude,
+      latitude: req.body.latitude,
       likes: 0,
       dislikes: 0,
     })

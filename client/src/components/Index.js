@@ -7,8 +7,11 @@ import Timeline from "./Timeline";
 import Navigation from "./Navigation";
 import About from "./About";
 import Logout from "./Logout";
+import SearchBar from "./SearchBar";
+
 
 export {
+  SearchBar,
   Logout,
   About,
   Navigation,

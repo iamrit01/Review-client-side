@@ -15,11 +15,35 @@ const Login = (props) => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
+  // const validateEmail = () => {
+  //   const { email } = user;
+  //   console.log(email.length);
+  //   {
+  //     //find first dot
+  //     for (let i = 0; i < email.length; i++) {
+  //       if (email.charAt(i) === "." && email.length > 9) {
+  //         //checking for @
+  //         for (let j = i + 1; j < email.length; j++) {
+  //           if (email.charAt(j) === "@" && email.length >= 9) {
+  //             let checkStr = email.substring(j + 1, email.length);
+  //             //checking for gmail.com
+  //             console.log("email check ", checkStr);
+  //             if (checkStr.includes("gmail.com")) {
+  //               alert("email id is correct");
+  //               console.log("email is correct ", email);
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     //check for @ and then, check for "gmail" ||
+  //   }
+  // };
 
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = user;
-    console.log("eh");
+    // validateEmail();
     const response = await fetch("/api/v1/users/login", {
       method: "POST",
       headers: {

@@ -8,6 +8,7 @@ import {
   Navigation,
   About,
   Logout,
+  SearchBar,
 } from "./Index";
 import { createContext, useEffect, useReducer, useState } from "react";
 import { Route, Switch } from "react-router-dom";
