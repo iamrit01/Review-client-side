@@ -18,17 +18,10 @@ export const UserContext = createContext();
 const App = () => {
   const [user, setUser] = useState({});
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const [name, setName] = useState("");
-  // const [image, setImage] = useState("");
-  // useEffect(() => {
-  //   getUser();
-  // }, [user]);
   useEffect(() => {
     getUser();
-    console.log("chedcking");
   }, []);
   const getUser = async () => {
-    console.log("hahah");
     try {
       const res = await fetch("/api/v1/users/getUser", {
         method: "GET",
@@ -53,7 +46,7 @@ const App = () => {
       <UserContext.Provider value={{ state, dispatch }}>
         <Navbar name={user.name} profileImage={user.profileImage} />
         <Switch>
-          <Route exact path="/" component={Timeline} />
+          <Route exact path="/" render={() => <Timeline user={user} />} />
           <Route
             path="/login"
             render={() => <Login handleUser={(user) => setUser(user)} />}

@@ -8,12 +8,13 @@ import {
   AiOutlineComment,
   AiOutlineDelete,
 } from "react-icons/ai";
-const Timeline = () => {
+const Timeline = (props) => {
   const [posts, setPosts] = useState([]);
   const [description, setDiscription] = useState("");
   const [image, setImage] = useState("");
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
+  const [comments, setComments] = useState("");
 
   const handleSelete = async (value) => {
     const result = await geocodeByAddress(value);
@@ -70,7 +71,7 @@ const Timeline = () => {
     const res = await fetch("/api/v1/post/like", {
       method: "POST",
       headers: {
-        Accept: "appllication/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -79,7 +80,7 @@ const Timeline = () => {
         likes,
       }),
     });
-    let data = res.json();
+    let data = await res.json();
     if (!data || data.status === 401) {
       window.alert("Unauthorized User");
     } else if (data.status === 500) {
@@ -92,7 +93,7 @@ const Timeline = () => {
     const res = await fetch("/api/v1/post/dislike", {
       method: "POST",
       headers: {
-        Accept: "appllication/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -101,7 +102,7 @@ const Timeline = () => {
         dislikes,
       }),
     });
-    let data = res.json();
+    let data = await res.json();
     if (!data || data.status === 401) {
       window.alert("Unauthorized User");
     } else if (data.status === 500) {
@@ -125,6 +126,32 @@ const Timeline = () => {
     const data = await res.json();
     console.log("delete post response", data);
     getPosts();
+  };
+  const submitComment = async (e, index) => {
+    e.preventDefault();
+    console.log("comment corner post index ", index);
+    let post_id = posts[index]._id;
+    let user_id = props.user._id;
+    let content = comments;
+    let res = await fetch("/api/v1/comment/create", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        post_id,
+        user_id,
+        content,
+      }),
+    });
+    let data = await res.json();
+    if (!data || data.status === 400) {
+      window.alert("Unauthorized User");
+    } else if (data.status === 500) {
+      window.alert("server error !!!");
+    }
   };
 
   console.log(posts);
@@ -239,6 +266,22 @@ const Timeline = () => {
                       <AiOutlineDelete size={35} />
                     </button>
                   </div>
+                </div>
+                <div>
+                  <form>
+                    <input
+                      name="comment"
+                      value={comments}
+                      onChange={(e) => setComments(e.target.value)}
+                      type="text"
+                      placeholder="Enter You'r Thoughts"
+                    />
+                    <input
+                      type="submit"
+                      value="post"
+                      onClick={() => submitComment(index)}
+                    />
+                  </form>
                 </div>
               </div>
             );

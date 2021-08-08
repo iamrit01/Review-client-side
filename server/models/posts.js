@@ -33,6 +33,12 @@ const postSchema = new mongoose.Schema(
     dislikes: {
       type: Number,
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   {
     timeStamp: true,
