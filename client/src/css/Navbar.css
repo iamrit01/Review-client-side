@@ -1,4 +1,6 @@
 .navbar {
+  position: fixed;
+  width: 98%;
   height: 40px;
   display: flex;
   /* background: #86afcb; */
@@ -25,10 +27,10 @@
   display: flex;
 }
 .search-container input {
-  background: #f0f2eb;
+  background: #fff;
   border: 1px solid #d0d0d0;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 5px;
   height: 40px;
   width: 100%;
   font-size: 16px;
@@ -37,7 +39,7 @@
   flex-grow: 1;
 }
 input.search-query {
-  background-color: #f0f2eb;
+  background-color: #fff;
   color: black;
 }
 .search-container input:focus {

@@ -257,15 +257,15 @@ const Timeline = (props) => {
                     <div className="item_content_media">
                       <img src={`${post.image}`} alt="review related image" />
                     </div>
-                    <div className="item_description">
-                      <p>{post.Description}</p>
+                    <div className="item_description" id="item_description_id">
+                      <p id="para_des_id">{post.Description}</p>
                     </div>
                   </div>
                 </div>
                 <div className="item_btns">
                   <div className="like_btn exprssion_btn">
                     <button onClick={() => likePost(index)}>
-                      <AiOutlineLike size={35} />
+                      <AiOutlineLike size={35} margin={0} padding={0} />
                     </button>
                     <div className="like_count count">
                       <span>{post.likes}</span>

@@ -1,11 +1,11 @@
 .address_searchbar {
-  width: 352px;
+  width: 40vw;
   display: flex;
-  padding-left: 10px;
+  padding-left: 0px;
   padding-bottom: 10px;
   border-bottom: 1px solid;
   justify-content: space-between;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .address_searchbar input {
@@ -14,7 +14,11 @@
   background: white;
   border: none;
   font-size: 13px;
-  border: 1px solid rgb(180, 180, 180);
+  border: 2px solid #838daa;
   border-radius: 5px;
   color: #7c8990;
+  width: 33vw;
+}
+#location_para_id {
+  padding: 5px 0;
 }

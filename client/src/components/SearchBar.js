@@ -13,12 +13,12 @@ const SearchBar = (props) => {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="address_searchbar">
-            <div>
-              <p>Location : </p>
+            <div id="location_para_id">
+              <p>Location</p>
             </div>
             <div>
               <div>
-                <input {...getInputProps({ placeholder: "Type Address" })} />
+                <input {...getInputProps({ placeholder: "Address..." })} />
               </div>
               <div className="address_searchbar_map">
                 {loading ? <div>Loading...</div> : null}
