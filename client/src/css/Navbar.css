@@ -1,10 +1,10 @@
 .navbar {
+  top: 0;
   position: fixed;
   width: 98%;
   height: 40px;
   display: flex;
-  /* background: #86afcb; */
-  background: #688bb5;
+  background: #4547542e;
   padding: 10px 20px;
   align-items: center;
   justify-content: space-between;
@@ -86,7 +86,7 @@ span {
 }
 .nav-links ul li a {
   text-decoration: none;
-  color: #f8f7f7;
+  color: #454855;
 }
 .nav-links ul li a:hover {
   color: #86afcb;

@@ -2,6 +2,12 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+.signup_container {
+  margin-top: 125px;
+}
+#signup_form {
+  height: 68vh;
+}
 .Signup {
   height: 89vh;
   display: flex;

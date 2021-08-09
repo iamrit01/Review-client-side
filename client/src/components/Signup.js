@@ -45,66 +45,73 @@ const Signup = () => {
   };
 
   return (
-    <form className="login-form" method="POST" encType="multipart/form-data">
-      <span className="login-signup-header">Sign Up</span>
-      <div className="field">
-        <input
-          placeholder="Enter Name"
-          name="name"
-          type="text"
-          value={user.name}
-          onChange={handleInputChanges}
-          required
-        />
-      </div>
-      <div className="field">
-        <input
-          placeholder="Enter Email"
-          name="email"
-          type="email"
-          value={user.email}
-          onChange={handleInputChanges}
-          required
-        />
-      </div>
-      <div className="field">
-        <input
-          placeholder="Enter Password"
-          name="password"
-          type="password"
-          value={user.password}
-          onChange={handleInputChanges}
-          required
-        />
-      </div>
-      <div className="field">
-        <input
-          placeholder="Re-Enter Password"
-          name="confirmPassword"
-          type="password"
-          value={user.confirmPassword}
-          onChange={handleInputChanges}
-          required
-        />
-      </div>
-      <div className="field">
-        <input
-          name="categoryImage"
-          type="file"
-          onChange={(e) => setDp(e.target.files[0])}
-          required
-        />
-      </div>
-      <div className="field">
-        <input
-          className="field_button"
-          type="submit"
-          name="signUp"
-          value="Sign Up"
-          onClick={signUpUser}
-        />
-      </div>
-    </form>
+    <div className="signup_container">
+      <form
+        className="login-form"
+        id="signup_form"
+        method="POST"
+        encType="multipart/form-data"
+      >
+        <span className="login-signup-header">Sign Up</span>
+        <div className="field">
+          <input
+            placeholder="Enter Name"
+            name="name"
+            type="text"
+            value={user.name}
+            onChange={handleInputChanges}
+            required
+          />
+        </div>
+        <div className="field">
+          <input
+            placeholder="Enter Email"
+            name="email"
+            type="email"
+            value={user.email}
+            onChange={handleInputChanges}
+            required
+          />
+        </div>
+        <div className="field">
+          <input
+            placeholder="Enter Password"
+            name="password"
+            type="password"
+            value={user.password}
+            onChange={handleInputChanges}
+            required
+          />
+        </div>
+        <div className="field">
+          <input
+            placeholder="Re-Enter Password"
+            name="confirmPassword"
+            type="password"
+            value={user.confirmPassword}
+            onChange={handleInputChanges}
+            required
+          />
+        </div>
+        <div className="field">
+          <input
+            name="categoryImage"
+            type="file"
+            onChange={(e) => setDp(e.target.files[0])}
+            required
+          />
+        </div>
+        <div className="field">
+          <input
+            className="field_button"
+            type="submit"
+            name="signUp"
+            value="Sign Up"
+            onClick={signUpUser}
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 
