@@ -1,6 +1,7 @@
 import React from "react";
 import PlaceAutoComplete from "react-places-autocomplete";
-
+import "../css/Timeline.css";
+import "../css/Searchbar.css";
 const SearchBar = (props) => {
   const { address, setAddress, handleSelete } = props;
   return (
@@ -11,23 +12,30 @@ const SearchBar = (props) => {
         onSelect={handleSelete}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input {...getInputProps({ placeholder: "Type Address" })} />
+          <div className="address_searchbar">
             <div>
-              {loading ? <div>Loading...</div> : null}
-              {suggestions.map((suggestion) => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#bbded6" : "#fff",
-                };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, { style })}
-                    key={suggestion.placeId}
-                  >
-                    {suggestion.description}
-                  </div>
-                );
-              })}
+              <p>Location : </p>
+            </div>
+            <div>
+              <div>
+                <input {...getInputProps({ placeholder: "Type Address" })} />
+              </div>
+              <div className="address_searchbar_map">
+                {loading ? <div>Loading...</div> : null}
+                {suggestions.map((suggestion) => {
+                  const style = {
+                    backgroundColor: suggestion.active ? "#688bb5" : "#fff",
+                  };
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, { style })}
+                      key={suggestion.placeId}
+                    >
+                      {suggestion.description}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

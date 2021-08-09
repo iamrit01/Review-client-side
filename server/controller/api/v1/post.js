@@ -44,6 +44,10 @@ module.exports.getCollection = async function (req, res) {
   });
 };
 
+// module.exports.search = async function (req, res){
+//   let posts= await Post.find({}).
+// }
+
 //update like count in db
 module.exports.like = async function (req, res) {
   try {

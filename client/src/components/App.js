@@ -10,6 +10,7 @@ import {
   Logout,
   SearchBar,
 } from "./Index";
+
 import { createContext, useEffect, useReducer, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { initialState, reducer } from "../reducer/UseReducer";

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Timeline.css";
+import "../css/Searchbar.css";
 import { SearchBar } from "./Index";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import {
@@ -8,6 +9,7 @@ import {
   AiOutlineComment,
   AiOutlineDelete,
 } from "react-icons/ai";
+
 const Timeline = (props) => {
   const [posts, setPosts] = useState([]);
   const [description, setDiscription] = useState("");
@@ -157,50 +159,80 @@ const Timeline = (props) => {
   console.log(posts);
   return (
     <div className="timeline">
+      <div className="side_block">
+        <div className="dark">
+          <div className="profile_info">
+            <div className="new_profile_info">
+              <div className="avatar" id="user_avtar">
+                <img src={`${props.user.profileImage}`} alt="user avatar" />
+              </div>
+              <div className="user_name">
+                <h3>{`${props.user.name}`}</h3>
+              </div>
+
+              <div className="user_info">
+                <p>Email : {`${props.user.email}`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="light"></div>
+      </div>
       <div className="timeline_main_container">
-        <div>
+        <div className="update_form_expanded">
           <form
             className="post_content_container"
             method="POST"
             encType="multipart/form-data"
           >
-            <div className="content_textarea">
-              <input
-                type="text"
-                name="description"
-                value={description}
-                onChange={(e) => setDiscription(e.target.value)}
-                placeholder="Enter Reviews here..."
-                required
-              />
-            </div>
-            <div>
-              <p>Upload image</p>
-              <input
-                type="file"
-                name="categoryImage"
-                onChange={(e) => setImage(e.target.files[0])}
-                required
-              />
-            </div>
-            <div>
-              <SearchBar
-                address={address}
-                setAddress={setAddress}
-                coordinates={coordinates}
-                setCoordinates={setCoordinates}
-                handleSelete={handleSelete}
-              />
-            </div>
+            <div className="avatar_content_container">
+              <div className="avatar">
+                <img src={`${props.user.profileImage}`} alt="user avatar" />
+              </div>
+              <div>
+                <div>
+                  <SearchBar
+                    address={address}
+                    setAddress={setAddress}
+                    coordinates={coordinates}
+                    setCoordinates={setCoordinates}
+                    handleSelete={handleSelete}
+                  />
+                </div>
 
-            <div className="content_post_btn">
-              <input
-                className="field_button"
-                type="submit"
-                name="submit_post"
-                value="Post"
-                onClick={submitPost}
-              />
+                <div className="content_textarea">
+                  <div className="new_content_textarea">
+                    <input
+                      type="text"
+                      name="description"
+                      value={description}
+                      onChange={(e) => setDiscription(e.target.value)}
+                      placeholder="Enter Reviews here..."
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="buttons_container">
+              <div className="new_image">
+                <input
+                  className="upload_box"
+                  type="file"
+                  name="categoryImage"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  required
+                />
+              </div>
+
+              <div className="content_post_btn">
+                <input
+                  type="submit"
+                  name="submit_post"
+                  value="Post"
+                  onClick={submitPost}
+                />
+              </div>
             </div>
           </form>
         </div>
@@ -267,7 +299,7 @@ const Timeline = (props) => {
                     </button>
                   </div>
                 </div>
-                <div>
+                <div className="address_searchbar">
                   <form>
                     <input
                       name="comment"

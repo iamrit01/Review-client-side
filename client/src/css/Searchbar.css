@@ -1,0 +1,20 @@
+.address_searchbar {
+  width: 352px;
+  display: flex;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  justify-content: space-between;
+  margin-left: 5px;
+}
+
+.address_searchbar input {
+  outline: none;
+  padding: 5px;
+  background: white;
+  border: none;
+  font-size: 13px;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 5px;
+  color: #7c8990;
+}
