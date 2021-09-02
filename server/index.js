@@ -7,7 +7,6 @@ const port = process.env.PORT || 3001;
 
 const app = express();
 
-//use uploads folder to save images
 app.use("/uploads", express.static("uploads"));
 
 app.use(cookieParser());

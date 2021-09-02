@@ -8,15 +8,16 @@ body {
   background: url("https://source.unsplash.com/1600x900/?nature,water");
 }
 .login_container {
+  opacity: 1;
   margin-top: 150px;
 }
 .login-signup-header {
   font-weight: 600;
   font-size: 30px;
-  color: #bac8d8;
+  color: #688bb5;
 }
 .login-form {
-  background-color: #ffffffc9;
+  background-color: #ffffffde;
   padding: 20px;
   box-sizing: border-box;
   display: flex;

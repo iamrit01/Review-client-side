@@ -6,12 +6,9 @@ const Profile = () => {
     email: "",
     profileImage: "",
   });
-  useEffect(
-    () => {
-      displayProfile();
-    },
-    { ...user }
-  );
+  useEffect(() => {
+    displayProfile();
+  });
 
   const displayProfile = async () => {
     const res = await fetch("/api/v1/profile/profile", {

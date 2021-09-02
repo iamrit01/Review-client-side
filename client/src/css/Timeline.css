@@ -4,7 +4,6 @@ body {
 }
 .timeline {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 10px;
@@ -50,8 +49,16 @@ body {
   width: 150px;
   height: 150px;
 }
+#user_name_id {
+  margin: 10px 0;
+}
 .user_name h3 {
   text-transform: capitalize;
+}
+.user_info p {
+  font-weight: 400;
+  font-size: 20px;
+  font-family: math;
 }
 .new_profile_info {
   display: flex;
@@ -143,7 +150,7 @@ body {
   margin-bottom: 2.5rem;
   padding: 2.5rem 2rem;
   border-radius: 12px;
-  box-shadow: 0px 0px 20px 20px rgb(104 139 181 / 22%);
+  box-shadow: 0px 0px 20px 3px rgb(104 139 181 / 15%);
 }
 .update_form_expanded::before {
   content: "";
@@ -165,8 +172,8 @@ body {
 }
 
 .avatar img {
-  width: 40px;
-  height: auto;
+  width: 80px;
+  height: 90px;
   border-radius: 10px;
 }
 .content_textarea {

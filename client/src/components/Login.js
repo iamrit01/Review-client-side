@@ -3,7 +3,7 @@ import "../css/Login.css";
 import { useHistory } from "react-router";
 import { UserContext } from "./App";
 const Login = (props) => {
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
   const history = useHistory();
   const [user, setUser] = useState({
     email: "",
@@ -13,6 +13,7 @@ const Login = (props) => {
   const handleInputChanges = (e) => {
     name = e.target.name;
     value = e.target.value;
+
     setUser({ ...user, [name]: value });
   };
 

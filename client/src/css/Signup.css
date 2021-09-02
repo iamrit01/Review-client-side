@@ -8,6 +8,9 @@ body {
 #signup_form {
   height: 68vh;
 }
+#input_field_id input {
+  height: 50px;
+}
 .Signup {
   height: 89vh;
   display: flex;

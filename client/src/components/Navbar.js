@@ -6,18 +6,18 @@ import { UserContext } from "./App";
 
 const Navbar = (props) => {
   console.log("nav bar props ", props.profileImage);
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
   const RenderMenu = () => {
     if (state) {
       return (
         <>
-          <li>
+          <li id="link_container_id">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li id="link_container_id">
             <Link to="/profile">Profie</Link>
           </li>
-          <li>
+          <li id="link_container_id">
             <Link to="/logout">Logout</Link>
           </li>
         </>
@@ -25,40 +25,33 @@ const Navbar = (props) => {
     } else {
       return (
         <>
-          <li>
+          <li id="link_container_id">
             <Link to="/login">Log In</Link>
           </li>
 
-          <li>
+          <li id="link_container_id">
             <Link to="/signUP">Sign Up</Link>
           </li>
         </>
       );
     }
   };
-  const RenderDp = () => {
-    if (state) {
-      return (
-        <div className="user">
-          <img alt="user-dp" id="user-dp" src={`${props.profileImage}`} />
-          <span>{props.name}</span>
-        </div>
-      );
-    } else {
-      return <div className="user"></div>;
-    }
-  };
 
   return (
     <div className="navbar">
-      <div className="logo_container">
-        <Link to="/">
-          <img
-            className="logo"
-            src="https://img.icons8.com/cotton/64/000000/worldwide-location--v2.png"
-            alt="logo"
-          />
-        </Link>
+      <div className="logo_name_container">
+        <div className="logo_container">
+          <Link to="/">
+            <img
+              className="logo"
+              src="https://img.icons8.com/cotton/64/000000/worldwide-location--v2.png"
+              alt="logo"
+            />
+          </Link>
+        </div>
+        <div id="web_name">
+          <h3>React Me</h3>
+        </div>
       </div>
       <div>
         <div className="search-container">
@@ -67,7 +60,7 @@ const Navbar = (props) => {
         </div>
       </div>
       <div className="right-nav">
-        <RenderDp />
+        {/* <RenderDp /> */}
 
         <div className="nav-links">
           <ul>

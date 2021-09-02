@@ -54,7 +54,7 @@ const Signup = () => {
       >
         <span className="login-signup-header">Sign Up</span>
         <div className="field">
-          <input
+          <input_
             placeholder="Enter Name"
             name="name"
             type="text"
@@ -93,7 +93,7 @@ const Signup = () => {
             required
           />
         </div>
-        <div className="field">
+        <div className="field" id="input_field_id">
           <input
             name="categoryImage"
             type="file"

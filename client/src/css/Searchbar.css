@@ -1,5 +1,5 @@
 .address_searchbar {
-  width: 40vw;
+  width: 38vw;
   display: flex;
   padding-left: 0px;
   padding-bottom: 10px;
@@ -17,7 +17,7 @@
   border: 2px solid #838daa;
   border-radius: 5px;
   color: #7c8990;
-  width: 33vw;
+  width: 30vw;
 }
 #location_para_id {
   padding: 5px 0;

@@ -28,7 +28,7 @@ const Timeline = (props) => {
 
   useEffect(() => {
     getPosts();
-  }, [...posts]);
+  });
 
   const getPosts = async () => {
     try {
@@ -41,7 +41,7 @@ const Timeline = (props) => {
         credentials: "include",
       });
       const data = await res.json();
-      console.log("get Posts ", data.postData);
+
       setPosts(...posts, data.postData);
     } catch (err) {
       console.log("view Post error ", err);
@@ -88,7 +88,9 @@ const Timeline = (props) => {
     } else if (data.status === 500) {
       window.alert("Server Error ");
     }
+    getPosts();
   };
+
   const dislikePost = async (post_index) => {
     const id = posts[post_index]._id;
     const dislikes = posts[post_index].dislikes;
@@ -113,7 +115,6 @@ const Timeline = (props) => {
   };
   const deletePost = async (index) => {
     const id = posts[index]._id;
-    console.log("post id ", id);
     const res = await fetch("/api/v1/post/delete", {
       method: "POST",
       headers: {
@@ -125,13 +126,11 @@ const Timeline = (props) => {
       }),
       credentials: "include",
     });
-    const data = await res.json();
-    console.log("delete post response", data);
+    await res.json();
     getPosts();
   };
   const submitComment = async (e, index) => {
     e.preventDefault();
-    console.log("comment corner post index ", index);
     let post_id = posts[index]._id;
     let user_id = props.user._id;
     let content = comments;
@@ -155,8 +154,7 @@ const Timeline = (props) => {
       window.alert("server error !!!");
     }
   };
-
-  console.log(posts);
+  console.log("posts ", posts);
   return (
     <div className="timeline">
       <div className="side_block">
@@ -166,7 +164,7 @@ const Timeline = (props) => {
               <div className="avatar" id="user_avtar">
                 <img src={`${props.user.profileImage}`} alt="user avatar" />
               </div>
-              <div className="user_name">
+              <div className="user_name" id="user_name_id">
                 <h3>{`${props.user.name}`}</h3>
               </div>
 
@@ -245,7 +243,7 @@ const Timeline = (props) => {
                     <div className="user_profile">
                       <img
                         src={`${post.user.profileImage}`}
-                        alt="user profile image"
+                        alt="user profile"
                       />
                     </div>
                     <div className="user_details">
@@ -255,7 +253,7 @@ const Timeline = (props) => {
                   </div>
                   <div className="item_content">
                     <div className="item_content_media">
-                      <img src={`${post.image}`} alt="review related image" />
+                      <img src={`${post.image}`} alt="review related " />
                     </div>
                     <div className="item_description" id="item_description_id">
                       <p id="para_des_id">{post.Description}</p>

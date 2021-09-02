@@ -5,10 +5,8 @@ import {
   Timeline,
   NotFound,
   Profile,
-  Navigation,
   About,
   Logout,
-  SearchBar,
 } from "./Index";
 
 import { createContext, useEffect, useReducer, useState } from "react";
@@ -33,7 +31,6 @@ const App = () => {
         credentials: "include",
       });
       const data = await res.json();
-      console.log("app data", data);
       setUser({
         ...data,
       });
@@ -41,7 +38,6 @@ const App = () => {
       console.log(err);
     }
   };
-  console.log("app user data ", user);
   return (
     <>
       <UserContext.Provider value={{ state, dispatch }}>
