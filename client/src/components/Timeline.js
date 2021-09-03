@@ -28,7 +28,7 @@ const Timeline = (props) => {
 
   useEffect(() => {
     getPosts();
-  });
+  }, [...posts]);
 
   const getPosts = async () => {
     try {
@@ -235,87 +235,92 @@ const Timeline = (props) => {
           </form>
         </div>
         <div className="post_lists">
-          {posts.map((post, index) => {
-            return (
-              <div key={index} className="post_item">
-                <div className="item">
-                  <div className="item_content_subheadlines">
-                    <div className="user_profile">
-                      <img
-                        src={`${post.user.profileImage}`}
-                        alt="user profile"
+          {posts &&
+            posts.length > 0 &&
+            posts.map((post, index) => {
+              return (
+                <div key={index} className="post_item">
+                  <div className="item">
+                    <div className="item_content_subheadlines">
+                      <div className="user_profile">
+                        <img
+                          src={`${post.user.profileImage}`}
+                          alt="user profile"
+                        />
+                      </div>
+                      <div className="user_details">
+                        <h4 className="user_name">{post.user.name}</h4>
+                        <p>{post.address}</p>
+                      </div>
+                    </div>
+                    <div className="item_content">
+                      <div className="item_content_media">
+                        <img src={`${post.image}`} alt="review related " />
+                      </div>
+                      <div
+                        className="item_description"
+                        id="item_description_id"
+                      >
+                        <p id="para_des_id">{post.Description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="item_btns">
+                    <div className="like_btn exprssion_btn">
+                      <button onClick={() => likePost(index)}>
+                        <AiOutlineLike size={35} margin={0} padding={0} />
+                      </button>
+                      <div className="like_count count">
+                        <span>{post.likes}</span>
+                      </div>
+                    </div>
+                    <div className="dislike_btn exprssion_btn">
+                      <button
+                        onClick={() => dislikePost(index)}
+                        className="like_btn"
+                      >
+                        <AiOutlineDislike size={35} />
+                      </button>
+                      <div className="like_count count ">
+                        <span>{post.dislikes}</span>
+                      </div>
+                    </div>
+                    <div className="comment_count exprssion_btn">
+                      <button className="comment_btn">
+                        <AiOutlineComment size={35} />
+                      </button>
+                      <div className="comment_count count">
+                        <span>2</span>
+                      </div>
+                    </div>
+                    <div className="exprssion_btn">
+                      <button
+                        className="comment_btn"
+                        onClick={() => deletePost(index)}
+                      >
+                        <AiOutlineDelete size={35} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="address_searchbar">
+                    <form>
+                      <input
+                        name="comment"
+                        value={comments}
+                        onChange={(e) => setComments(e.target.value)}
+                        type="text"
+                        placeholder="Enter You'r Thoughts"
                       />
-                    </div>
-                    <div className="user_details">
-                      <h4 className="user_name">{post.user.name}</h4>
-                      <p>{post.address}</p>
-                    </div>
-                  </div>
-                  <div className="item_content">
-                    <div className="item_content_media">
-                      <img src={`${post.image}`} alt="review related " />
-                    </div>
-                    <div className="item_description" id="item_description_id">
-                      <p id="para_des_id">{post.Description}</p>
-                    </div>
+                      <input
+                        type="submit"
+                        value="post"
+                        onClick={() => submitComment(index)}
+                      />
+                    </form>
                   </div>
                 </div>
-                <div className="item_btns">
-                  <div className="like_btn exprssion_btn">
-                    <button onClick={() => likePost(index)}>
-                      <AiOutlineLike size={35} margin={0} padding={0} />
-                    </button>
-                    <div className="like_count count">
-                      <span>{post.likes}</span>
-                    </div>
-                  </div>
-                  <div className="dislike_btn exprssion_btn">
-                    <button
-                      onClick={() => dislikePost(index)}
-                      className="like_btn"
-                    >
-                      <AiOutlineDislike size={35} />
-                    </button>
-                    <div className="like_count count ">
-                      <span>{post.dislikes}</span>
-                    </div>
-                  </div>
-                  <div className="comment_count exprssion_btn">
-                    <button className="comment_btn">
-                      <AiOutlineComment size={35} />
-                    </button>
-                    <div className="comment_count count">
-                      <span>2</span>
-                    </div>
-                  </div>
-                  <div className="exprssion_btn">
-                    <button
-                      className="comment_btn"
-                      onClick={() => deletePost(index)}
-                    >
-                      <AiOutlineDelete size={35} />
-                    </button>
-                  </div>
-                </div>
-                <div className="address_searchbar">
-                  <form>
-                    <input
-                      name="comment"
-                      value={comments}
-                      onChange={(e) => setComments(e.target.value)}
-                      type="text"
-                      placeholder="Enter You'r Thoughts"
-                    />
-                    <input
-                      type="submit"
-                      value="post"
-                      onClick={() => submitComment(index)}
-                    />
-                  </form>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>

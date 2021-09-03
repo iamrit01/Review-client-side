@@ -19,7 +19,7 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     getUser();
-  }, []);
+  });
   const getUser = async () => {
     try {
       const res = await fetch("/api/v1/users/getUser", {
