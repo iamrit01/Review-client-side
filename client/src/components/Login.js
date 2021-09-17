@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import "../css/Login.css";
 import { useHistory } from "react-router";
 import { UserContext } from "./App";
+import axios from "axios";
+const login_url = "http://localhost:3001/api/v1/users/login";
 const Login = (props) => {
   const { dispatch } = useContext(UserContext);
   const history = useHistory();
@@ -17,33 +19,37 @@ const Login = (props) => {
     setUser({ ...user, [name]: value });
   };
 
-  const loginUser = async (e) => {
+  const loginUser = (e) => {
     e.preventDefault();
     const { email, password } = user;
+    console.log("user :: ", user);
+    const config = {
+      "Content-Type": "application/json",
+    };
     // validateEmail();
-    const response = await fetch("/api/v1/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const data = await response.json();
-    if (response.status === 401 || response.status === 402) {
-      window.alert("Invalid Credentials");
-    } else if (response.status === 422) {
-      window.alert("Please filled the field properly");
-    } else if (response.status === 500) {
-      window.alert("Server Error! 500");
-    } else {
-      dispatch({ type: "USER", payload: true });
-      props.handleUser(data.userLogin);
-      history.push("/");
-      window.alert("Login Successfully :)");
-    }
+    axios
+      .post(login_url, user, config)
+      .then((response) => {
+        console.log("Login response :: ", response);
+        dispatch({ type: "USER", payload: true });
+        props.handleUser(response.data.userLogin);
+        localStorage.setItem("jwtoken", JSON.stringify(response.data.token));
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log("Login error :: ", error);
+      });
+    // const data = await response.json();
+    // if (response.status === 401 || response.status === 402) {
+    //   window.alert("Invalid Credentials");
+    // } else if (response.status === 422) {
+    //   window.alert("Please filled the field properly");
+    // } else if (response.status === 500) {
+    //   window.alert("Server Error! 500");
+    // } else {
+    //
+    //   window.alert("Login Successfully :)");
+    // }
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/Timeline.css";
 import "../css/Searchbar.css";
+import axios from "axios";
 import { SearchBar } from "./Index";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import {
@@ -9,6 +10,8 @@ import {
   AiOutlineComment,
   AiOutlineDelete,
 } from "react-icons/ai";
+const submitPost_url = "http://localhost:3001/api/v1/post/create";
+const viewPost_url = "http://localhost:3001/api/v1/post/viewPosts";
 
 const Timeline = (props) => {
   const [posts, setPosts] = useState([]);
@@ -30,41 +33,61 @@ const Timeline = (props) => {
     getPosts();
   }, [...posts]);
 
-  const getPosts = async () => {
+  const getPosts = () => {
     try {
-      const res = await fetch("/api/v1/post/viewPosts", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-      const data = await res.json();
+      const config = {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      };
 
-      setPosts(...posts, data.postData);
+      axios
+        .post(
+          viewPost_url,
+          { token: JSON.parse(localStorage.getItem("jwtoken")) },
+          config
+        )
+        .then((response) => {
+          console.log("view Posts response :: ", response.data.postData);
+          setPosts((posts) => [...posts, ...response.data.postData]);
+        })
+        .catch((error) => {
+          console.log("view post error :: ", error);
+        });
+      // setPosts({});
+      // setPosts(...posts, data.postData);
     } catch (err) {
       console.log("view Post error ", err);
     }
   };
-  const submitPost = async (e) => {
+  console.log("posts State :: ", posts);
+  const submitPost = (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("description", description);
+    formData.append("token", JSON.parse(localStorage.getItem("jwtoken")));
     formData.append("categoryImage", image);
     formData.append("address", address);
     formData.append("longitude", coordinates.lng);
     formData.append("latitude", coordinates.lat);
-    const res = await fetch("/api/v1/post/create", {
-      method: "POST",
-      body: formData,
-    });
-    let data = await res.json();
-    if (!data || data.status === 401) {
-      window.alert("Unauthorized User");
-    } else if (data.status === 500) {
-      window.alert("Server Error ");
-    }
+    const config = {
+      "content-type": "multipart/form-data",
+    };
+
+    axios
+      .post(submitPost_url, formData, config)
+      .then((response) => {
+        console.log("create post response :: ", response);
+      })
+      .catch((error) => {
+        console.log("create post error :: ", error);
+      });
+
+    // let data = await res.json();
+    // if (!data || data.status === 401) {
+    //   window.alert("Unauthorized User");
+    // } else if (data.status === 500) {
+    //   window.alert("Server Error ");
+    // }
   };
 
   const likePost = async (post_index) => {
@@ -238,8 +261,9 @@ const Timeline = (props) => {
           {posts &&
             posts.length > 0 &&
             posts.map((post, index) => {
+              console.log("map post :: ", post.user.profileImage);
               return (
-                <div key={index} className="post_item">
+                <div key={post._id} className="post_item">
                   <div className="item">
                     <div className="item_content_subheadlines">
                       <div className="user_profile">
@@ -285,14 +309,14 @@ const Timeline = (props) => {
                         <span>{post.dislikes}</span>
                       </div>
                     </div>
-                    <div className="comment_count exprssion_btn">
+                    {/* <div className="comment_count exprssion_btn">
                       <button className="comment_btn">
                         <AiOutlineComment size={35} />
                       </button>
                       <div className="comment_count count">
                         <span>2</span>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="exprssion_btn">
                       <button
                         className="comment_btn"
@@ -302,7 +326,7 @@ const Timeline = (props) => {
                       </button>
                     </div>
                   </div>
-                  <div className="address_searchbar">
+                  {/* <div className="address_searchbar">
                     <form>
                       <input
                         name="comment"
@@ -317,7 +341,7 @@ const Timeline = (props) => {
                         onClick={() => submitComment(index)}
                       />
                     </form>
-                  </div>
+                  </div> */}
                 </div>
               );
             })}

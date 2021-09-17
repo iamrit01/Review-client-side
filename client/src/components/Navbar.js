@@ -53,12 +53,12 @@ const Navbar = (props) => {
           <h3>React Me</h3>
         </div>
       </div>
-      <div>
+      {/* <div>
         <div className="search-container">
           <FiSearch className="search-icon" />
           <input placeholder="Search here.." class="search-query" />
         </div>
-      </div>
+      </div> */}
       <div className="right-nav">
         {/* <RenderDp /> */}
 

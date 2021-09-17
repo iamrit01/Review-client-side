@@ -1,6 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "../css/Signup.css";
+const signUp_URL = "http://localhost:3001/api/v1/users/signup";
 const Signup = () => {
   const history = useHistory();
   const [user, setUser] = useState({
@@ -17,31 +19,52 @@ const Signup = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const signUpUser = async (event) => {
+  const setFormData = () => {
+    const { name, email, password, confirmPassword } = user;
+    let formData = new FormData();
+
+    console.log("```` ", formData);
+    return formData;
+  };
+
+  const signUpUser = (event) => {
     event.preventDefault();
     let formData = new FormData();
     const { name, email, password, confirmPassword } = user;
+
     formData.append("name", name);
     formData.append("email", email);
     formData.append("password", password);
     formData.append("confirmPassword", confirmPassword);
     formData.append("categoryImage", dp);
-    const response = await fetch("/api/v1/users/signup", {
-      method: "POST",
 
-      body: formData,
-    });
-    const data = await response.json();
-    if (!data || response.status === 422) {
-      console.log("Invalid Credentials");
-      window.alert("Invalid Credentials");
-    } else if (response.status === 500) {
-      console.log("Server Error! 500");
-      window.alert("Server Error! 500");
-    } else {
-      history.push("/login");
-      window.alert("Registration  Successfully :)");
-    }
+    const config = {
+      "content-type": "multipart/form-data",
+    };
+
+    axios
+      .post(signUp_URL, formData, config)
+      .then((response) => {
+        console.log("sign up user response :: ", response);
+      })
+      .catch((error) => {
+        console.log("sign up user error :: ", error);
+      });
+
+    // axios.post("", {
+    //   ...user,
+    // });
+    // const data = await response.json();
+    // if (!data || response.status === 422) {
+    //   console.log("Invalid Credentials");
+    //   window.alert("Invalid Credentials");
+    // } else if (response.status === 500) {
+    //   console.log("Server Error! 500");
+    //   window.alert("Server Error! 500");
+    // } else {
+    //   history.push("/login");
+    //   window.alert("Registration  Successfully :)");
+    // }
   };
 
   return (
@@ -54,7 +77,7 @@ const Signup = () => {
       >
         <span className="login-signup-header">Sign Up</span>
         <div className="field">
-          <input_
+          <input
             placeholder="Enter Name"
             name="name"
             type="text"

@@ -12,28 +12,46 @@ import {
 import { createContext, useEffect, useReducer, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { initialState, reducer } from "../reducer/UseReducer";
+import axios from "axios";
 export const UserContext = createContext();
-
+const getUser_url = "http://localhost:3001/api/v1/users/getUser";
 const App = () => {
   const [user, setUser] = useState({});
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     getUser();
   });
-  const getUser = async () => {
+  const getUser = () => {
     try {
-      const res = await fetch("/api/v1/users/getUser", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-      const data = await res.json();
-      setUser({
-        ...data,
-      });
+      const config = {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      };
+
+      axios
+        .post(
+          getUser_url,
+          { token: JSON.parse(localStorage.getItem("jwtoken")) },
+          config
+        )
+        .then((response) => {
+          console.log("get user response :: ", response);
+        })
+        .catch((error) => {
+          console.log("get user error :: ", error);
+        });
+
+      // withCredentials: true,)
+      //
+      // const res = await fetch("", {
+      //   method: "GET",
+      //   headers: {},
+      //   credentials: "include",
+      // });
+      // const data = await res.json();
+      // setUser({
+      //   ...data,
+      // });
     } catch (err) {
       console.log(err);
     }
