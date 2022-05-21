@@ -3,58 +3,16 @@
 ::before {
   margin: 0;
 }
-body {
-  box-sizing: border-box;
-}
-.login_container {
-  opacity: 1;
-  margin-top: 150px;
-}
-.login-signup-header {
-  font-weight: 600;
-  font-size: 30px;
-  color: #688bb5;
-}
-.login-form {
-  background-color: #ffffffde;
-  padding: 20px;
-  box-sizing: border-box;
+.auth-container {
+  height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 30%;
-  height: 45vh;
-  margin: 50px auto;
-  border-radius: 6px;
+  justify-content: center;
 }
-.field {
-  width: 100%;
-}
-.field input {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  border-radius: 6px;
-  width: 100%;
-  height: 40px;
-  margin-top: 20px;
-  padding: 5px;
-  font-size: 15px;
-}
-.field input:focus {
-  outline: none;
-}
-.field_button {
-  width: 100%;
-  margin-top: 20px;
-  background: #688bb5;
-  border-radius: 2px;
-  color: #fff;
-  font-size: 25px;
-  padding: 9px;
-  border: none;
-  outline: none;
-}
-.field_button:hover {
-  cursor: pointer;
+.form-tag {
+  width: 30vw;
+  border: 1px solid;
+  padding: 1rem;
+  border-radius: 10px;
 }

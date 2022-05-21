@@ -1,36 +1,44 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-import "../css/Navbar.css";
+// import "../css/Navbar.css";
 import { UserContext } from "./App";
 
 const Navbar = (props) => {
-  console.log("nav bar props ", props.profileImage);
   const { state } = useContext(UserContext);
   const RenderMenu = () => {
     if (state) {
       return (
         <>
-          <li id="link_container_id">
-            <Link to="/">Home</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
           </li>
-          <li id="link_container_id">
-            <Link to="/profile">Profie</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
           </li>
-          <li id="link_container_id">
-            <Link to="/logout">Logout</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/logout">
+              Logout
+            </Link>
           </li>
         </>
       );
     } else {
       return (
         <>
-          <li id="link_container_id">
-            <Link to="/login">Log In</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Log In
+            </Link>
           </li>
-
-          <li id="link_container_id">
-            <Link to="/signUP">Sign Up</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/signUP">
+              Sign Up
+            </Link>
           </li>
         </>
       );
@@ -38,37 +46,29 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className="navbar">
-      <div className="logo_name_container">
-        <div className="logo_container">
-          <Link to="/">
-            <img
-              className="logo"
-              src="https://img.icons8.com/cotton/64/000000/worldwide-location--v2.png"
-              alt="logo"
-            />
-          </Link>
-        </div>
-        <div id="web_name">
-          <h3>React Me</h3>
-        </div>
-      </div>
-      {/* <div>
-        <div className="search-container">
-          <FiSearch className="search-icon" />
-          <input placeholder="Search here.." class="search-query" />
-        </div>
-      </div> */}
-      <div className="right-nav">
-        {/* <RenderDp /> */}
-
-        <div className="nav-links">
-          <ul>
+    <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          Review
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <RenderMenu />
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
